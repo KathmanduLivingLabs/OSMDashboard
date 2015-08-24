@@ -1,0 +1,110 @@
+.body {
+  font-size: 14px;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; }
+
+.header {
+	font-family: Sans; 
+ }
+
+.header-text{
+  font-size: 3em;
+  margin-bottom: 0.7em;
+ }
+
+.username-container {
+  margin: 0px 0px 0px 0px; }
+  .username-container input {
+        width: 200px;
+    height: 30px;
+    border: 2px solid;
+    background: url('img/filter.svg')no-repeat scroll 7px 2px;
+    background-size: 24px;
+    padding-left: 30px;
+
+}
+
+
+.time-container {
+  margin: 0px 50px 0px 50px; }
+  .time-container input {
+        width: 200px;
+    height: 30px;
+    border: 2px solid;
+    background: url('img/filter.svg')no-repeat scroll 7px 2px;
+    background-size: 24px;
+    padding-left: 30px; }
+
+.apply-btn {
+  border: 2px solid;
+padding: 8px;
+  cursor: pointer; 
+box-shadow: 2px 2px 3px;
+}
+
+.apply-btn:hover {
+  background-color:#b5deee;
+ }
+.filter-row{
+	margin-bottom: 1em;
+}
+.inline-div {
+  display: inline-block; }
+#map{
+	height: 520px;
+	overflow: hidden;
+}
+.Search-bar {
+    z-index: 100000000;
+    position: absolute;
+    /* transform: translate(50%); */
+    margin-left: 92em;
+    /* float: right; */
+    opacity: 1;
+    /* right: 45em; */
+    margin-top: 1em;
+}
+.Search-bar input{
+        width: 8em;
+    /* height: 4em; */
+    border-radius: 0.3em;
+    /* border-bottom-color: #614444; */
+    font-size: 1.3em;
+    font-family: sans;
+    background: url('img/s.png')no-repeat scroll 7px 2px;
+    background-size: 18px;
+    padding-left: 30px;
+}
+.Search-bar:hover{
+	background-color: #fff;
+}
+ .abt_tour {
+    position: relative;
+    float: left;
+    left: 60em;
+    top: 2em;
+}
+#about {
+    display: inline-block;
+    padding: 1.5em;
+    font-size: 1.5em;
+    box-shadow: 2px 2px 3px;
+    border: 2px solid;
+    padding: 0.2em;
+    margin-left: 6em;
+    box-sizing: border-box;
+}
+#tour {
+    display: inline-block;
+    font-size: 1.5em;
+    border: 2px solid;
+    padding: 0.2em;
+    margin: 1em;
+    box-shadow: 2px 2px 3px;
+    box-sizing: border-box;
+}
+ .container{
+	overflow: hidden;
+	background-color: #F5F4F0;
+}
+
+

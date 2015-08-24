@@ -4,11 +4,18 @@
 	<meta charset="UTF-8">
 	<title></title>
 	<link rel="stylesheet" href="style.css">
+	 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+	 <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
 </head>
 <body>
-	<div class="header"><h1>OSM Dashboard</h1></div>
+	<div class="container">
+	<div class="head">
+	<div class="abt_tour"><div id="about">About</div><div id="tour">Tour</div></div>
+	<div class="header"><div class='header-text'>OSM Live Scoreboard</div></div>
+	</div>
 	<div class="filter-row">
 		<div class="username-container inline-div">
+		<div class="image"></div>
 			<input type="text" placeholder="Enter Username">
 		</div>
 		<div class="time-container inline-div">
@@ -18,10 +25,17 @@
 			Apply
 		</div>
 	</div>
-	<div class="content">
-		<div class="map"></div>
-		<div class="chart-view"></div>
+	<!--<div class="content">-->
+		<div id="map">
+		<div class="Search-bar">
+		<input type="text" placeholder="place name">
+		</div>
 	</div>
+		<!--<div class="chart-view"></div>
+	</div>-->
 	<div class="footer"></div>
+	</div>
+	<script src="map.js"></script>
+
 </body>
 </html>
