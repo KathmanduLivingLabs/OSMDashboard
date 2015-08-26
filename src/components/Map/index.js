@@ -1,8 +1,7 @@
 import L from 'Leaflet';
 var React = require('react');
-var LeafletMap = require('react-leaflet').Map; 
-var TileLayer = require('react-leaflet').TileLayer;
 
+require('leaflet-draw');
 require('./style.scss');
 
 export default class Map extends React.Component {
@@ -15,6 +14,28 @@ export default class Map extends React.Component {
 		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(this.lmap);
+
+		var editableLayer = new L.FeatureGroup();
+		this.lmap.addLayer(editableLayer);
+
+		var drawControl = new L.Control.Draw({
+			draw: {
+				polyline: false,
+				marker: false,
+				rectangle: false,
+				circle: false
+			},
+			edit: {
+				featureGroup: editableLayer
+			}
+		});
+		this.lmap.addControl(drawControl);
+
+		var _this = this;
+		this.lmap.on('draw:created', function(e) {
+			console.log(_this.lmap);
+			editableLayer.addLayer(e.layer);
+		});
 	}
 	render() {
 		return(
