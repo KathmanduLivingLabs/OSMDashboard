@@ -2,40 +2,41 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
+	<title>OSM Dashboard</title>
 	<link rel="stylesheet" href="style.css">
-	 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
-	 <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+	<link rel="stylesheet" href="http://leaflet.github.io/Leaflet.draw/leaflet.draw.css">
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
 </head>
 <body>
 	<div class="container">
-	<div class="head">
-	<div class="abt_tour"><div id="about">About</div><div id="tour">Tour</div></div>
-	<div class="header"><div class='header-text'>OSM Live Scoreboard</div></div>
-	</div>
-	<div class="filter-row">
-		<div class="username-container inline-div">
-		<div class="image"></div>
-			<input type="text" placeholder="Enter Username">
+		<div class="header">
+			<div class="title">
+				<span class="title-osm">OSM</span>
+				<span class="title-dash">Dash</span><span class="title-b">b</span><span class="title-oard">oard</span>
+			</div>
+			<div class="about">About</div>
+			<div class="tour">Tour</div>
 		</div>
-		<div class="time-container inline-div">
-			<input type="text" placeholder="Enter Time">
+		<div class="content">
+			<div class="filter">
+				<div class="username-filter">
+					<input id="username_filter" class="input_filter" placeholder="Enter Username" type="text">
+				</div>
+				<div class="time-filter">
+					<input id="time_filter" class="input_filter" placeholder="Enter Time" type="text">
+				</div>
+				<div class="apply-filter">Apply Filter</div>
+			</div>
+			<div class="search">
+				<input id="search_input" class="search-input" type="text">
+				<div class="search-icon"></div>
+			</div>
+			<div id="map"></div>
+			<div class="footer"></div>
 		</div>
-		<div id="apply_btn" class="apply-btn inline-div">
-			Apply
-		</div>
-	</div>
-	<!--<div class="content">-->
-		<div id="map">
-		<div class="Search-bar">
-		<input type="text" placeholder="place name">
-		</div>
-	</div>
-		<!--<div class="chart-view"></div>
-	</div>-->
-	<div class="footer"></div>
-	</div>
+	</div>		
+	<script src="http://leaflet.github.io/Leaflet.draw/leaflet.draw.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
 	<script src="map.js"></script>
-
 </body>
 </html>
