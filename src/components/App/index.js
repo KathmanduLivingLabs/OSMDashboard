@@ -4,7 +4,7 @@ var Filter = require('../Filter');
 var Search = require('../Search');
 var Map = require('../Map');
 var ErrorMsg = require('../ErrorMsg');
-var Footer = require('../Filter');
+var Footer = require('../Footer');
 
 require('./style.scss');
 
