@@ -8,7 +8,7 @@ export default class Search extends React.Component {
 		return(
 			<div className="search">
 				<input id="search_input" className="search-input" type="text" />
-				<div className="search-icon"></div>
+				<div className="search-btn">Search</div>
 			</div>
 		);
 	}

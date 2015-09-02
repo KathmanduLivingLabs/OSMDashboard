@@ -3,6 +3,7 @@ var Header = require('../Header');
 var Filter = require('../Filter');
 var Search = require('../Search');
 var Map = require('../Map');
+var Charts = require('../Charts');
 var ErrorMsg = require('../ErrorMsg');
 var Footer = require('../Footer');
 
@@ -14,9 +15,11 @@ export default class App extends React.Component {
 			<div className="container">
 				<Header />
 				<div className="content">
-					<Filter />
 					<Search />
+					<Filter />
+					<div className="horizontal-line"></div>
 					<Map />
+					<Charts />
 				</div>
 				<Footer />	
 			</div>

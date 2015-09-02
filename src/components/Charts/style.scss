@@ -1,0 +1,52 @@
+.all-charts {
+	position: relative;
+	display: inline-block;
+	height: 380px;
+	width: 500px;
+	margin-left: 50px;
+	vertical-align: bottom;
+}
+
+.chart-title {
+	position: absolute;
+	top: -25px;
+	right: 120px;
+	padding: 0px 5px;
+	border-radius: 4px;
+	opacity: 1;
+	background: #8C8888;
+}
+
+.x-axis-label {
+	position: absolute;
+	bottom: -30px;
+	left: 250px;
+}
+
+.y-axis-label {
+	position: absolute;
+	top: 150px;
+	left: -50px;
+	display: inline-block;
+	transform: rotate(90deg);
+}
+
+.nav-left {
+	position: absolute;
+	top: 170px;
+	left: 15px;
+	background: url('../../images/left_arrow.svg');
+	background-size: 24px 24px;
+	width: 24px;
+	height: 24px;
+}
+
+.nav-right {
+	position: absolute;
+	top: 170px;
+	right: 0;
+	background: url('../../images/right_arrow.svg');
+	background-size: 24px 24px;
+	width: 24px;
+	height: 24px;
+}
