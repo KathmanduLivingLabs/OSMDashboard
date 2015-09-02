@@ -31,10 +31,9 @@ export default class Map extends React.Component {
 		});
 		this.lmap.addControl(drawControl);
 
-		var _this = this;
 		this.lmap.on('draw:created', function(e) {
-			console.log(_this.lmap);
 			editableLayer.addLayer(e.layer);
+			console.log(e.layer.getBounds());
 		});
 	}
 	render() {
