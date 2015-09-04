@@ -1,4 +1,5 @@
 import L from 'Leaflet';
+import nepal_border from './nepal_border.js';
 var React = require('react');
 
 require('leaflet-draw');
