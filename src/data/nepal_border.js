@@ -1,4 +1,4 @@
-asdad asd sadsd nepal_border = {
+nepal_border = {
     "type": "FeatureCollection",
     "crs": {
         "type": "name",
