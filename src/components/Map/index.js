@@ -10,7 +10,7 @@ export default class Map extends React.Component {
 		this.lmap = null;
 	}
 	componentDidMount() {
-		this.lmap = L.map('map').setView([28.478348, 84.439285], 7);
+		this.lmap = L.map('map').setView([28.478348, 84.439285], 6);
 		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(this.lmap);

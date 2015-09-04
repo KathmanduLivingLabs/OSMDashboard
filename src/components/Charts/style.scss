@@ -1,10 +1,11 @@
 .all-charts {
 	position: relative;
 	display: inline-block;
-	height: 380px;
+	height: auto;
 	width: 500px;
 	margin-left: 50px;
-	vertical-align: bottom;
+	margin-top: 15px;
+	vertical-align: top;
 }
 
 .chart-title {
@@ -26,19 +27,19 @@
 .y-axis-label {
 	position: absolute;
 	top: 150px;
-	left: -50px;
+	left: -60px;
 	display: inline-block;
-	transform: rotate(90deg);
+	transform: rotate(-90deg);
 }
 
 .nav-left {
 	position: absolute;
 	top: 170px;
-	left: 15px;
+	left: 0;
 	background: url('../../images/left_arrow.svg');
-	background-size: 24px 24px;
-	width: 24px;
-	height: 24px;
+	background-size: 50px 50px;
+	width: 50px;
+	height: 50px;
 }
 
 .nav-right {
@@ -46,7 +47,11 @@
 	top: 170px;
 	right: 0;
 	background: url('../../images/right_arrow.svg');
-	background-size: 24px 24px;
-	width: 24px;
-	height: 24px;
+	background-size: 50px 50px;
+	width: 50px;
+	height: 50px;
+}
+
+.hide {
+	display: none;
 }
