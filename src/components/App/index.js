@@ -11,12 +11,28 @@ var Footer = require('../Footer');
 require('./style.scss');
 
 export default class App extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			searchText: ''
+		};
+	}
+
+	setSearchText(searchText) {
+		this.setState({
+			searchText: searchText
+		});
+	}
+	componentDidUpdate() {
+		console.log(this.state.searchText);
+	}
+
 	render() {
 		return( 
 			<div className="container">
 				<Header />
 				<div className="content">
-					<Search />
+					<Search setSearchText={this.setSearchText.bind(this)} />
 					<Filter />
 					<div className="all-border">
 						<Map />

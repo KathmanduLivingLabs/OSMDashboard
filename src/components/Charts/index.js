@@ -57,7 +57,6 @@ export default class Charts extends React.Component {
 			}
 		};
 
-		console.log("hello delo dog doie");
 		new Chartist.Line(selector, data, options);
 	}
 
