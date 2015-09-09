@@ -1,4 +1,4 @@
-import L from 'Leaflet';
+import L from 'leaflet';
 var React = require('react');
 var nepal_border = require('../../data/nepal_border.json');
 var vdc_json = require('../../data/vdc.geojson');
