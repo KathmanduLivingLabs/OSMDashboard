@@ -7,6 +7,7 @@ export default class Charts extends React.Component {
 		super();
 		this.state = {
 			roads: [],
+			waterway: [],
 			eduInstitute: [],
 			buildings: [],
 			medical: [],
@@ -28,6 +29,12 @@ export default class Charts extends React.Component {
 	setRoads(roads) {
 		this.setState({
 			roads: roads
+		});
+	}
+
+	setWaterway(waterway) {
+		this.setState({
+			waterway: waterway
 		});
 	}
 
@@ -88,6 +95,20 @@ export default class Charts extends React.Component {
 	// sets chart data and options for all charts 
 	setChartData() {
 		var buildings = fetchData('buildings');
+		/*
+		var roads = fetchData('roads');
+		var waterway = fetchData('waterway');
+		var eduInstitute = fetchData('waterway');
+		var buildings = fetchData('buildings');
+		var medical = fetchData('medical');
+		var financialInstitue = featchData('financialInstitue');
+		var govOffices = fetchData('govOffices');
+		var historicSites = featchData('historicSites');
+		var naturalHeritage = featchData('naturalHeritage');
+		var touristInterest = featchData('touristInterest');
+		var settlement = featchData('settlement');
+	 */
+		console.log("tick tock");
 		chartData[0] = {
 			labels: ['2011', '2012', '2013', '2014', '2015'],
 			series: [
