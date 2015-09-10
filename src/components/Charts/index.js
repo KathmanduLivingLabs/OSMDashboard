@@ -95,6 +95,11 @@ export default class Charts extends React.Component {
 	// sets chart data and options for all charts 
 	setChartData() {
 		var buildings = fetchData('buildings');
+		var roads = fetchData('roads');
+		var waterways = fetchData('waterways');
+		console.log(buildings);
+		console.log(roads);
+		console.log(waterways);
 		/*
 		var roads = fetchData('roads');
 		var waterway = fetchData('waterway');
@@ -108,7 +113,6 @@ export default class Charts extends React.Component {
 		var touristInterest = featchData('touristInterest');
 		var settlement = featchData('settlement');
 	 */
-		console.log("tick tock");
 		chartData[0] = {
 			labels: ['2011', '2012', '2013', '2014', '2015'],
 			series: [
@@ -119,8 +123,8 @@ export default class Charts extends React.Component {
 			labels: ['2011', '2012', '2013', '2014', '2015'],
 			series: [
 				[buildings[0].count, buildings[1].count, buildings[2].count, buildings[3].count, buildings[4].count],
-				[0, 0.3, 0.4, 1, 2.2],
-				[0.1, 0.4, 0.5, 1.2, 2],
+				[!roads[0].sum ? 0 : roads[0].sum, !roads[1].sum ? 0 : roads[1].sum, !roads[2].sum ? 0 : roads[2].sum, !roads[3].sum ? 0 : roads[3].sum, !roads[4].sum ? 0 : roads[4].sum],
+				[!waterways[0].sum ? 0 : waterways[0].sum, waterways[1].sum ? 0 : waterways[1].sum, waterways[2].sum ? 0 : waterways[2].sum, waterways[3].sum ? 0 : waterways[3].sum, waterways[4].sum ? 0 : waterways[4].sum],
 				[0.1, 0.5, 0.6, 1.2, 2],
 				[0.2, 0.6, 0.7, 1.2, 1.9],
 				[0.3, 0.7, 0.8, 1.3, 1.8],
