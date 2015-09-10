@@ -5,6 +5,7 @@ var Search = require('../Search');
 var Map = require('../Map');
 var Charts = require('../Charts');
 var MapStats = require('../MapStats');
+var RecentMapper = require('../RecentMapper');
 var ErrorMsg = require('../ErrorMsg');
 var Footer = require('../Footer');
 
@@ -63,6 +64,9 @@ export default class App extends React.Component {
 					<div className="stats">
 						<MapStats />
 					</div>
+					<div className="recentmapper">
+						<RecentMapper />
+					</div>	
 				</div>
 				<Footer />	
 			</div>
