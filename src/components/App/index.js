@@ -10,6 +10,7 @@ var ErrorMsg = require('../ErrorMsg');
 var Footer = require('../Footer');
 
 require('./style.scss');
+require('./spinner.scss');
 
 export default class App extends React.Component {
 	constructor() {
@@ -48,7 +49,14 @@ export default class App extends React.Component {
 
 	render() {
 		return( 
-			<div className="container">
+				<div className="container">
+					<div id="overlay"></div>
+					<div className="sk-folding-cube">
+						<div className="sk-cube1 sk-cube"></div>
+						<div className="sk-cube2 sk-cube"></div>
+						<div className="sk-cube4 sk-cube"></div>
+						<div className="sk-cube3 sk-cube"></div>
+					</div>
 				<Header />
 				<div className="content">
 					<Search 

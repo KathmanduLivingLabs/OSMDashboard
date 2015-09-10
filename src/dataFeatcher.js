@@ -1,4 +1,5 @@
 function fetchData(query_type, fromYear, toYear, bbox) {
+	setLoader();
 	fromYear = (typeof fromYear === 'undefined') ? '2010' : fromYear;
 	toYear = (typeof toYear === 'undefined') ? '2010' : toYear;
 	bbox = (typeof bbox === 'undefined') ? '81.123, 27.987,85.456,29.123' : bbox;
@@ -7,6 +8,17 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 	apiURL += fromYear + '&to=';
 	apiURL += toYear + '&bbox=' + bbox;
 	$.get(apiURL, function(result) {
+		hideLoader();
 		return result;
 	});
 }
+
+function setLoader() {
+	document.getElementById('overlay').className = 'overlay';
+}
+
+function hideLoader() {
+	document.getElementById('overlay').className = '';
+}
+
+

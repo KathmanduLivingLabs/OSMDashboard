@@ -4,7 +4,19 @@ require('./style.scss');
 var chartData = [];
 export default class Charts extends React.Component {
 	constructor() {
-		buildings: []
+		super();
+		this.state = {
+			roads: [],
+			eduInstitute: [],
+			buildings: [],
+			medical: [],
+			financialInstitue: [],
+			govOffices: [],
+			historicSites: [],
+			naturalHeritage: [],
+			touristInterest: [],
+			settlement: []
+		};
 	}
 	componentDidMount() {
 		this.setChartData();
@@ -13,40 +25,69 @@ export default class Charts extends React.Component {
 		this.makeChart(chartData[2], '', '#chart_3');
 	}
 
+	setRoads(roads) {
+		this.setState({
+			roads: roads
+		});
+	}
+
+	setEduInstitute(eduInstitute) {
+		this.setState({
+			eduInstitute: eduInstitute
+		});
+	}
+
 	setBuildings(buildings) {
 		this.setState({
 			buildings: buildings
 		});
 	}
-	
+
+	setMedical(medical) {
+		this.setState({
+			medical: medical
+		});
+	}
+
+	setFinancialInstitue(financialInstitue) {
+		this.setState({
+			financialInstitue: financialInstitue
+		});
+	}
+
+	setGovOffices(govOffices) {
+		this.setState({
+			govOffices: govOffices
+		});
+	}
+
+	setHistoricSites(historicSites) {
+		this.setState({
+			historicSites: historicSites
+		});
+	}
+
+	setNaturalHeritage(naturalHeritage) {
+		this.setState({
+			naturalHeritage: naturalHeritage
+		});
+	}
+
+	setTouristInterest(touristInterest) {
+		this.setState({
+			touristInterest: touristInterest
+		});
+	}
+
+	setSettlement(settlement) {
+		this.setState({
+			settlement: settlement
+		});
+	}
 
 	// sets chart data and options for all charts 
 	setChartData() {
-		var _this = this;
-		var apiURL = 'http://45.55.246.231:3000/api/buildings?from=';
-		apiURL += this.props.fromYear + '&to=';
-		apiURL += this.props.toYear + '&bbox=' + this.props.bbox;
-		apiURL = 'http://45.55.246.231:3000/api/buildings?from=2012&to=2013&bbox=81.123,27.987,85.456,29.123';
-		console.log(apiURL);
-
-		$.get(apiURL, function(result) {
-				console.log(result);
-			chartData[1] = {
-			labels: ['2011', '2012', '2013', '2014', '2015'],
-			series: [
-				[result[0].count, result[1].count, result[2].count, result[4].count, result[5].count],
-				[0, 0.3, 0.4, 1, 2.2],
-				[0.1, 0.4, 0.5, 1.2, 2],
-				[0.1, 0.5, 0.6, 1.2, 2],
-				[0.2, 0.6, 0.7, 1.2, 1.9],
-				[0.3, 0.7, 0.8, 1.3, 1.8],
-				[0.4, 0.8, 0.4, 4, 4.2],
-				[0.4, 0.9, 1, 1.2, 2],
-			]
-		};
-		_this.forceUpdate();
-
-		});
+		var buildings = fetchData('buildings');
 		chartData[0] = {
 			labels: ['2011', '2012', '2013', '2014', '2015'],
 			series: [
@@ -56,7 +97,7 @@ export default class Charts extends React.Component {
 		chartData[1] = {
 			labels: ['2011', '2012', '2013', '2014', '2015'],
 			series: [
-				[0, 3, 4.2, 5.8, 12],
+				[buildings[0].count, buildings[1].count, buildings[2].count, buildings[3].count, buildings[4].count],
 				[0, 0.3, 0.4, 1, 2.2],
 				[0.1, 0.4, 0.5, 1.2, 2],
 				[0.1, 0.5, 0.6, 1.2, 2],
