@@ -3,6 +3,21 @@ require('./style.scss');
 
 var chartData = [];
 export default class Charts extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			roads: [],
+			eduInstitute: [],
+			buildings: [],
+			medical: [],
+			financialInstitue: [],
+			govOffices: [],
+			historicSites: [],
+			naturalHeritage: [],
+			touristInterest: [],
+			settlement: []
+		};
+	}
 	componentDidMount() {
 		this.setChartData();
 		this.makeChart(chartData[0], 'M', '#chart_1');
@@ -10,8 +25,69 @@ export default class Charts extends React.Component {
 		this.makeChart(chartData[2], '', '#chart_3');
 	}
 
+	setRoads(roads) {
+		this.setState({
+			roads: roads
+		});
+	}
+
+	setEduInstitute(eduInstitute) {
+		this.setState({
+			eduInstitute: eduInstitute
+		});
+	}
+
+	setBuildings(buildings) {
+		this.setState({
+			buildings: buildings
+		});
+	}
+
+	setMedical(medical) {
+		this.setState({
+			medical: medical
+		});
+	}
+
+	setFinancialInstitue(financialInstitue) {
+		this.setState({
+			financialInstitue: financialInstitue
+		});
+	}
+
+	setGovOffices(govOffices) {
+		this.setState({
+			govOffices: govOffices
+		});
+	}
+
+	setHistoricSites(historicSites) {
+		this.setState({
+			historicSites: historicSites
+		});
+	}
+
+	setNaturalHeritage(naturalHeritage) {
+		this.setState({
+			naturalHeritage: naturalHeritage
+		});
+	}
+
+	setTouristInterest(touristInterest) {
+		this.setState({
+			touristInterest: touristInterest
+		});
+	}
+
+	setSettlement(settlement) {
+		this.setState({
+			settlement: settlement
+		});
+	}
+
 	// sets chart data and options for all charts 
 	setChartData() {
+		var buildings = fetchData('buildings');
 		chartData[0] = {
 			labels: ['2011', '2012', '2013', '2014', '2015'],
 			series: [
@@ -21,7 +97,7 @@ export default class Charts extends React.Component {
 		chartData[1] = {
 			labels: ['2011', '2012', '2013', '2014', '2015'],
 			series: [
-				[0, 3, 4.2, 5.8, 12],
+				[buildings[0].count, buildings[1].count, buildings[2].count, buildings[3].count, buildings[4].count],
 				[0, 0.3, 0.4, 1, 2.2],
 				[0.1, 0.4, 0.5, 1.2, 2],
 				[0.1, 0.5, 0.6, 1.2, 2],
@@ -57,7 +133,6 @@ export default class Charts extends React.Component {
 			}
 		};
 
-		console.log("hello delo dog doie");
 		new Chartist.Line(selector, data, options);
 	}
 
