@@ -10,7 +10,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 	apiURL += toYear + '&bbox=' + bbox;
 	var data = null;
 	$.ajax({
-		url: apiUrl,
+		url: apiURL,
 		success: function(result) {
 			hideLoader();
 			data = result;
