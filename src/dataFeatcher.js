@@ -1,4 +1,3 @@
-$(function() {
 function fetchData(query_type, fromYear, toYear, bbox) {
 	console.log("hello bello");
 	setLoader();
@@ -31,5 +30,3 @@ function hideLoader() {
 	$('#overlay').hide();
 	$('.sk-cube').hide();
 }
-
-});
