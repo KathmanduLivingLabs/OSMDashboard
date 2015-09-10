@@ -17,7 +17,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 		},
 		async: false
 	});
-	return result;
+	return data;
 }
 
 function setLoader() {
