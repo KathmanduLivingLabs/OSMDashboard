@@ -1,6 +1,7 @@
 var React = require('react');
 var districts = require('../../data/district.geojson');
 var vdcs = require('../../data/vdc.geojson');
+var L = require('leaflet');
 
 require('./style.scss');
 
@@ -19,7 +20,7 @@ export default class Search extends React.Component {
 		//this.setState({searchText: searchText});
 	}
 
-	setSearchResultText(searchResultList) {
+	setSearchResultList(searchResultList) {
 		this.setState({
 			searchResultList: searchResultList
 		});
@@ -31,19 +32,27 @@ export default class Search extends React.Component {
 			return item.properties.NAME.toLowerCase().indexOf(e.target.value.toLowerCase()) === 0;
 		});
 
-		var updatedList_2 = vdcs.features
+		var updatedList_2 = vdcs.features;
 		updatedList_2 = updatedList_2.filter(function(item) {
 			return item.properties.NAME.toLowerCase().indexOf(e.target.value.toLowerCase()) === 0;
 		});
 
-		updatedList = updatedList.slice(0, 3);
-		updatedList_2 = updatedList_2.slice(0, 3);
-		console.log(updatedList_2);
+		updatedList.sort(function(a, b) {
+			return a.properties.NAME.localeCompare(b.properties.NAME);
+		});
 		var finalList = updatedList.concat(updatedList_2);
-		this.setSearchResultText(finalList);
+		this.setSearchResultList(finalList);
+		if(e.target.value === '')
+			this.setSearchResultList([]);
 	}
-	
+
+	selectItem(feature, e) {
+		var layer = L.geoJson(feature);
+		console.log(layer.getBounds);
+	}
+
 	render() {
+		var _this = this;
 		return(
 			<div className="search-container">
 				<div className="search">
@@ -58,7 +67,11 @@ export default class Search extends React.Component {
 				<div className="search-result">
 					{
 						this.state.searchResultList.map(function(item, index) {
-							return <span key={index}>{item.properties.NAME}</span>
+							return(<span 
+											key={index}
+											onClick={_this.selectItem.bind(this, item)}>
+												{item.properties.NAME}
+											</span>);
 						})
 					}	
 				</div>

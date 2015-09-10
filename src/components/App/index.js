@@ -14,7 +14,10 @@ export default class App extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			searchText: ''
+			searchText: '',
+			bbox: [],
+			fromYear: 2010,
+			toYear: 2015
 		};
 	}
 
@@ -23,8 +26,23 @@ export default class App extends React.Component {
 			searchText: searchText
 		});
 	}
-	componentDidUpdate() {
-		console.log(this.state.searchText);
+
+	setBbox(bbox) {
+		this.setState({
+			bbox: bbox
+		});
+	}
+
+	setFromYear(fromYear) {
+		this.setState({
+			fromYear: fromYear
+		});
+	}
+
+	setToYear(toYear) {
+		this.setState({
+			toYear: toYear
+		});
 	}
 
 	render() {
@@ -32,8 +50,12 @@ export default class App extends React.Component {
 			<div className="container">
 				<Header />
 				<div className="content">
-					<Search setSearchText={this.setSearchText.bind(this)} />
-					<Filter />
+					<Search 
+						setSearchText={this.setSearchText.bind(this)}
+						setBbox={this.setBbox.bind(this)} />
+					<Filter 
+						setFromYear={this.setFromYear.bind(this)}
+						setToYear={this.setToYear.bind(this)} />
 					<div className="all-border">
 						<Map />
 						<Charts />
