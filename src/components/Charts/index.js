@@ -154,6 +154,7 @@ export default class Charts extends React.Component {
 		var touristInterest = fetchData('tourist_interest', '2010', '2015');
 		var settlement = fetchData('settlement', '2010', '2015');
 		var e_i_y = fetchData('e_i_y', '2010', '2015');
+		var users = fetchData('users', '2010', '2015');
 
 		roads = this.removeNullFromChartDataAndSync(roads);
 		waterways = this.removeNullFromChartDataAndSync(waterways);
@@ -167,6 +168,7 @@ export default class Charts extends React.Component {
 		touristInterest = this.removeNullFromChartDataAndSync(touristInterest);
 		settlement = this.removeNullFromChartDataAndSync(settlement);
 		e_i_y = this.removeNullFromChartDataAndSync(e_i_y);
+		users = this.removeNullFromChartDataAndSync(users);
 	 
 		chartData[0] = {
 			labels: ['2010', '2011', '2012', '2013', '2014', '2015'],
@@ -178,7 +180,8 @@ export default class Charts extends React.Component {
 		chartData[1] = {
 			labels: ['2011', '2012', '2013', '2014', '2015'],
 			series: [
-				[1000, 2100, 2800, 2900, 8600]
+				[users[0].count, users[1].count, users[2].count, 
+					users[3].count, users[4].count, users[5].count]
 			]
 		};
 		chartData[2] = {
@@ -243,8 +246,8 @@ export default class Charts extends React.Component {
 		chartData[10] = {
 			labels: ['2010', '2011', '2012', '2013', '2014', '2015'],
 			series: [
-				[settlement[0].count, settlement[1].count, settlement[2].count, 
-					settlement[3].count, settlement[4].count, settlement[5].count]
+				[settlement[0].settle_total, settlement[1].settle_total, settlement[2].settle_total, 
+					settlement[3].settle_total, settlement[4].settle_total, settlement[5].settle_total]
 			]
 		};
 		chartData[11] = {
