@@ -221,7 +221,7 @@ export default class Charts extends React.Component {
 	makeChart(data, y_unit, selector) {
 		var options = {
 			width: 500,
-			height: 400,
+			height: 350,
 			axisX: {
 				showGrid: false
 			},
@@ -233,7 +233,31 @@ export default class Charts extends React.Component {
 						return value;
 					return value + y_unit;
 				}
-			}
+			},
+			/*
+			plugins:[
+				Chartist.plugins.ctAxisTitle({
+					axisX: {
+						axisTitle: 'hello there angle',
+						axisClass: 'ct-axis-title',
+						offset: {
+							x: 0,
+							y: 35
+						},
+						textAnchor: 'middle'
+					},
+					axisY: {
+						axisTitle: 'the angle from my',
+						axisClass: 'ct-axis-title',
+						offset: {
+							x: 0,
+							y: 0
+						},
+						textAnchor: 'middle',
+						flipTitle: true
+					}
+				})
+			] */
 		};
 
 		new Chartist.Line(selector, data, options);
@@ -281,8 +305,6 @@ export default class Charts extends React.Component {
 				<div className="charts">
 					<div id="chart_1" className="chart">
 						<span className="chart-title">Map Contributions</span>
-						<span className="x-axis-label">Year</span>
-						<span className="y-axis-label">Map Contributions</span>
 					</div>
 					<div id="chart_2" className="chart hide">
 						<span className="chart-title">Users</span>
