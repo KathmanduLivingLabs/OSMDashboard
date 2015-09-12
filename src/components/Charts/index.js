@@ -22,8 +22,10 @@ export default class Charts extends React.Component {
 	componentDidMount() {
 		this.setChartData();
 		this.makeChart(chartData[0], 'M', '#chart_1');
-		this.makeChart(chartData[1], 'K', '#chart_2');
-		this.makeChart(chartData[2], '', '#chart_3');
+		this.makeChart(chartData[1], '', '#chart_2');
+		this.makeChart(chartData[2], 'K', '#chart_3');
+		this.makeChart(chartData[3], '', '#chart_4');
+		this.makeChart(chartData[4], '', '#chart_5');
 	}
 
 	setRoads(roads) {
@@ -133,30 +135,17 @@ export default class Charts extends React.Component {
 
 	// sets chart data and options for all charts 
 	setChartData() {
-		//var roads = fetchData('roads');
-		//var waterways = fetchData('waterways');
-		//var buildings = fetchData('buildings', 2010, 2014);
-
-		//buildings = this.removeNullFromChartData(buildings);
-		//roads = this.removeNullFromChartData(roads);
-		//waterways = this.removeNullFromChartData(waterways);
-
-		//console.log(buildings);
-		//console.log(roads);
-		//console.log(waterways);
-		
-		var roads = fetchData('roads', 2010, 2013);
-		var waterways = fetchData('waterways', 2010, 2013);
-		var eduInstitute = fetchData('edu_institute', 2010, 2013);
-		var buildings = fetchData('buildings', 2010, 2013);
-		var medical = fetchData('medical', 2010, 2013);
-		var financialInstitue = fetchData('financial_institue', 2010, 2013);
-		var govOffices = fetchData('gov_offices', 2010, 2013);
-		var historicSites = fetchData('historic_sites', 2010, 2013);
-		var naturalHeritage = fetchData('natural_heritage', 2010, 2013);
-		var touristInterest = fetchData('tourist_interest', 2010, 2013);
-		var settlement = fetchData('settlement', 2010, 2013);
-
+		var roads = fetchData('roads', '2010', '2015');
+		var waterways = fetchData('waterways', '2010', '2015');
+		var eduInstitute = fetchData('edu_institute', '2010', '2015');
+		var buildings = fetchData('buildings', '2010', '2015');
+		var medical = fetchData('medical', '2010', '2015');
+		var financialInstitue = fetchData('financial_institute', '2010', '2015');
+		var govOffices = fetchData('gov_offices', '2010', '2015');
+		var historicSites = fetchData('historic_sites', '2010', '2015');
+		var naturalHeritage = fetchData('natural_heritage', '2010', '2015');
+		var touristInterest = fetchData('tourist_interest', '2010', '2015');
+		var settlement = fetchData('settlement', '2010', '2015');
 
 		roads = this.removeNullFromChartDataAndSync(roads);
 		waterways = this.removeNullFromChartDataAndSync(waterways);
@@ -171,7 +160,7 @@ export default class Charts extends React.Component {
 		settlement = this.removeNullFromChartDataAndSync(settlement);
 	 
 		chartData[0] = {
-			labels: ['2011', '2012', '2013', '2014', '2015'],
+			labels: ['2010', '2011', '2012', '2013', '2014', '2015'],
 			series: [
 				[0, 0.5, 1, 1.2, 4.2]
 			]
@@ -179,20 +168,51 @@ export default class Charts extends React.Component {
 		chartData[1] = {
 			labels: ['2011', '2012', '2013', '2014', '2015'],
 			series: [
-				[buildings[0].count, buildings[1].count, buildings[2].count, buildings[3].count, buildings[4].count],
-				[!roads[0].sum ? 0 : roads[0].sum, !roads[1].sum ? 0 : roads[1].sum, !roads[2].sum ? 0 : roads[2].sum, !roads[3].sum ? 0 : roads[3].sum, !roads[4].sum ? 0 : roads[4].sum],
-				[!waterways[0].sum ? 0 : waterways[0].sum, waterways[1].sum ? 0 : waterways[1].sum, waterways[2].sum ? 0 : waterways[2].sum, waterways[3].sum ? 0 : waterways[3].sum, waterways[4].sum ? 0 : waterways[4].sum],
-				[0.1, 0.5, 0.6, 1.2, 2],
-				[0.2, 0.6, 0.7, 1.2, 1.9],
-				[0.3, 0.7, 0.8, 1.3, 1.8],
-				[0.4, 0.8, 0.4, 4, 4.2],
-				[0.4, 0.9, 1, 1.2, 2],
+				[1000, 2100, 2800, 2900, 8600]
 			]
 		};
 		chartData[2] = {
-			labels: ['2011', '2012', '2013', '2014', '2015'],
+			labels: ['2010', '2011', '2012', '2013', '2014', '2015'],
 			series: [
-				[1000, 2100, 2800, 2900, 8600]
+				[eduInstitute[0].school_total, eduInstitute[1].school_total, eduInstitute[2].school_total, 
+					eduInstitute[3].school_total, eduInstitute[4].school_total, eduInstitute[5].school_total],
+
+				[medical[0].hospital_total, medical[1].hospital_total, medical[2].hospital_total, 
+					medical[3].hospital_total, medical[4].hospital_total, medical[5].hospital_total],
+
+				[financialInstitue[0].finance_total, financialInstitue[1].finance_total, 
+					financialInstitue[2].finance_total, financialInstitue[3].finance_total, 
+					financialInstitue[4].finance_total, financialInstitue[5].finance_total],
+
+				[govOffices[0].offc_total, govOffices[1].offc_total, govOffices[2].offc_total, 
+					govOffices[3].offc_total, govOffices[4].offc_total, govOffices[5].offc_total],
+
+				[historicSites[0].historic_total, historicSites[1].historic_total, 
+					historicSites[2].historic_total, historicSites[3].historic_total, 
+					historicSites[4].historic_total, historicSites[5].historic_total],
+
+				[naturalHeritage[0].natural_total, naturalHeritage[1].natural_total, 
+					naturalHeritage[2].natural_total, naturalHeritage[3].natural_total, 
+					naturalHeritage[4].natural_total, naturalHeritage[5].natural_total],
+
+				[touristInterest[0].count, touristInterest[1].count, touristInterest[2].count, 
+					touristInterest[3].count, touristInterest[4].count, touristInterest[5].count]
+			]
+		};
+		chartData[3] = {
+			labels: ['2010', '2011', '2012', '2013', '2014', '2015'],
+			series: [
+				[buildings[0].count, buildings[1].count, buildings[2].count, 
+					buildings[3].count, buildings[4].count, buildings[5].count]
+			]
+		};
+		chartData[4] = {
+			labels: ['2010', '2011', '2012', '2013', '2014', '2015'],
+			series: [
+				[Math.round(roads[0].sum / 1000), Math.round(roads[1].sum / 1000), Math.round(roads[2].sum / 1000), 
+					Math.round(roads[3].sum / 1000), Math.round(roads[4].sum / 1000), Math.round(roads[5].sum / 1000)],
+				[Math.round(waterways[0].sum / 1000), Math.round(waterways[1].sum / 1000), Math.round(waterways[2].sum / 1000), 
+					Math.round(waterways[3].sum / 1000), Math.round(waterways[4].sum / 1000), Math.round(waterways[5].sum / 1000)]
 			]
 		};
 	}
@@ -205,6 +225,7 @@ export default class Charts extends React.Component {
 			axisX: {
 				showGrid: false
 			},
+			lineSmooth: false,
 			axisY: {
 				offset: 60,
 				labelInterpolationFnc: function(value) {
@@ -231,12 +252,12 @@ export default class Charts extends React.Component {
 	// char navigation left click 
 	navLeftClick() {
 		var charts = document.getElementsByClassName('chart');
-		for(var i = 0; i < 3; i++) {
+		for(var i = 0; i < 5; i++) {
 			if(charts[i].className.indexOf('hide') === -1) {
 				charts[i].className += ' hide';
 				if(i - 1 === -1)
-					i = 3;
-				charts[(i - 1) % 3].className = 'chart';
+					i = 5;
+				charts[(i - 1) % 5].className = 'chart';
 				break;
 			}
 		}
@@ -245,10 +266,10 @@ export default class Charts extends React.Component {
 	// char navigation right click 
 	navRightClick() {
 		var charts = document.getElementsByClassName('chart');
-		for(var i = 0; i < 3; i++) {
+		for(var i = 0; i < 5; i++) {
 			if(charts[i].className.indexOf('hide') === -1) {
 				charts[i].className += ' hide';
-				charts[(i + 1) % 3].className = 'chart';
+				charts[(i + 1) % 5].className = 'chart';
 				break;
 			}
 		}
@@ -264,14 +285,24 @@ export default class Charts extends React.Component {
 						<span className="y-axis-label">Map Contributions</span>
 					</div>
 					<div id="chart_2" className="chart hide">
+						<span className="chart-title">Users</span>
+						<span className="x-axis-label">Year</span>
+						<span className="y-axis-label">No. of Users</span>
+					</div>
+					<div id="chart_3" className="chart hide">
 						<span className="chart-title">Features Edited</span>
 						<span className="x-axis-label">Year</span>
 						<span className="y-axis-label">No. of Features Edited</span>
 					</div>
-					<div id="chart_3" className="chart hide">
-						<span className="chart-title">Users</span>
+					<div id="chart_4" className="chart hide">
+						<span className="chart-title">Buildings Edited</span>
 						<span className="x-axis-label">Year</span>
-						<span className="y-axis-label">No. of Users</span>
+						<span className="y-axis-label">No. of Buildings Edited</span>
+					</div>
+					<div id="chart_5" className="chart hide">
+						<span className="chart-title">Waterways and Roads</span>
+						<span className="x-axis-label">Year</span>
+						<span className="y-axis-label">Length of Edited Features</span>
 					</div>
 				</div>
 				<div id="nav_left" className="" onClick={this.navLeftClick}></div>
