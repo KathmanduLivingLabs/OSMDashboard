@@ -92,27 +92,84 @@ export default class Charts extends React.Component {
 		});
 	}
 
+	removeNullFromChartDataAndSync(data) {
+		var resultData = [];
+		var newResultData = [0, 0, 0, 0, 0, 0];
+		var nullArr = []; 
+		data.forEach(function(item) {
+				if(!item.max)
+					nullArr.push(item);
+				else {
+					if(item.max.indexOf(2010) !== -1)
+						newResultData[0] = item;	
+					else if(item.max.indexOf(2011) !== -1) 
+						newResultData[1] = item;
+					else if(item.max.indexOf(2012) !== -1) 
+						newResultData[2] = item;
+					else if(item.max.indexOf(2013) !== -1) 
+						newResultData[3] = item;
+					else if(item.max.indexOf(2014) !== -1) 
+						newResultData[4] = item;
+					else if(item.max.indexOf(2015) !== -1) 
+						newResultData[5] = item;
+				}
+		});
+		for(var i = 0; i < newResultData.length; i++) {
+			if(newResultData[i] === 0) {
+				newResultData[i] = nullArr.pop();
+			}
+		}
+		newResultData.forEach(function(item) {
+			if(typeof item.sum !== 'undefined') {
+				if(!item.sum) {
+					item.sum = 0;
+				}
+			}
+			resultData.push(item);
+		});
+		console.log(resultData);
+		return resultData;
+	}
+
 	// sets chart data and options for all charts 
 	setChartData() {
-		var buildings = fetchData('buildings');
-		var roads = fetchData('roads');
-		var waterways = fetchData('waterways');
-		console.log(buildings);
-		console.log(roads);
-		console.log(waterways);
-		/*
-		var roads = fetchData('roads');
-		var waterway = fetchData('waterway');
-		var eduInstitute = fetchData('waterway');
-		var buildings = fetchData('buildings');
-		var medical = fetchData('medical');
-		var financialInstitue = featchData('financialInstitue');
-		var govOffices = fetchData('govOffices');
-		var historicSites = featchData('historicSites');
-		var naturalHeritage = featchData('naturalHeritage');
-		var touristInterest = featchData('touristInterest');
-		var settlement = featchData('settlement');
-	 */
+		//var roads = fetchData('roads');
+		//var waterways = fetchData('waterways');
+		//var buildings = fetchData('buildings', 2010, 2014);
+
+		//buildings = this.removeNullFromChartData(buildings);
+		//roads = this.removeNullFromChartData(roads);
+		//waterways = this.removeNullFromChartData(waterways);
+
+		//console.log(buildings);
+		//console.log(roads);
+		//console.log(waterways);
+		
+		var roads = fetchData('roads', 2010, 2013);
+		var waterways = fetchData('waterways', 2010, 2013);
+		var eduInstitute = fetchData('edu_institute', 2010, 2013);
+		var buildings = fetchData('buildings', 2010, 2013);
+		var medical = fetchData('medical', 2010, 2013);
+		var financialInstitue = fetchData('financial_institue', 2010, 2013);
+		var govOffices = fetchData('gov_offices', 2010, 2013);
+		var historicSites = fetchData('historic_sites', 2010, 2013);
+		var naturalHeritage = fetchData('natural_heritage', 2010, 2013);
+		var touristInterest = fetchData('tourist_interest', 2010, 2013);
+		var settlement = fetchData('settlement', 2010, 2013);
+
+
+		roads = this.removeNullFromChartDataAndSync(roads);
+		waterways = this.removeNullFromChartDataAndSync(waterways);
+		eduInstitute = this.removeNullFromChartDataAndSync(eduInstitute);
+		buildings = this.removeNullFromChartDataAndSync(buildings);
+		medical = this.removeNullFromChartDataAndSync(medical);
+		financialInstitue = this.removeNullFromChartDataAndSync(financialInstitue);
+		govOffices = this.removeNullFromChartDataAndSync(govOffices);
+		historicSites = this.removeNullFromChartDataAndSync(historicSites);
+		naturalHeritage = this.removeNullFromChartDataAndSync(naturalHeritage);
+		touristInterest = this.removeNullFromChartDataAndSync(touristInterest);
+		settlement = this.removeNullFromChartDataAndSync(settlement);
+	 
 		chartData[0] = {
 			labels: ['2011', '2012', '2013', '2014', '2015'],
 			series: [
