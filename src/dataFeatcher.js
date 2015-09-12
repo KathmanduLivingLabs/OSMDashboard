@@ -31,24 +31,25 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 			case 'settlements':
 				return nepalStats.all[10];
 		}
+	} else {
+	
+		setLoader();
+		
+		var apiURL = 'http://45.55.246.231:3000/api/' + query_type + '?from=';
+		apiURL += fromYear + '&to=';
+		apiURL += toYear + '&bbox=' + bbox;
+		console.log(apiURL);
+		var data = null;
+		$.ajax({
+			url: apiURL,
+			success: function(result) {
+				hideLoader();
+				data = result;
+			},
+			async: false
+		});
+		return data;
 	}
-	
-	setLoader();
-	
-	var apiURL = 'http://45.55.246.231:3000/api/' + query_type + '?from=';
-	apiURL += fromYear + '&to=';
-	apiURL += toYear + '&bbox=' + bbox;
-	console.log(apiURL);
-	var data = null;
-	$.ajax({
-		url: apiURL,
-		success: function(result) {
-			hideLoader();
-			data = result;
-		},
-		async: false
-	});
-	return data;
 }
 
 function setLoader() {
