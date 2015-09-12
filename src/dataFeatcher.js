@@ -32,6 +32,8 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 				return nepalStats.all[10];
 			case 'e_i_y':
 				return nepalStats.all[11];
+			case 'users':
+				return nepalStats.all[12];
 		}
 	} else {
 	
