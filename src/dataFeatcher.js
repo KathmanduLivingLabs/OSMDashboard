@@ -1,13 +1,44 @@
 function fetchData(query_type, fromYear, toYear, bbox) {
 	console.log("hello bello");
-	setLoader();
+	
+	
 	fromYear = (typeof fromYear === 'undefined') ? '2010' : fromYear;
 	toYear = (typeof toYear === 'undefined') ? '2010' : toYear;
-	bbox = (typeof bbox === 'undefined') ? '81.123, 27.987,85.456,29.123' : bbox;
-
+	bbox = (typeof bbox === 'undefined') ? '81.123,27.987,85.456,29.123' : bbox;
+	
+	if(bbox === '81.123,27.987,85.456,29.123' && fromYear === '2010' && toYear === '2015') {
+		switch(query_type) {
+			case 'roads':
+				return nepalStats.all[0];
+			case 'waterways':
+				return nepalStats.all[1];
+			case 'edu_institute':
+				return nepalStats.all[2];
+			case 'buildings':
+				return nepalStats.all[3];
+			case 'medical':
+				return nepalStats.all[4];
+			case 'financial_institute':
+				return nepalStats.all[5];
+			case 'gov_offices':
+				return nepalStats.all[6];
+			case 'historic_sites':
+				return nepalStats.all[7];
+			case 'natural_heritage':
+				return nepalStats.all[8];
+			case 'tourist_interest':
+				return nepalStats.all[9];
+			case 'settlements':
+				return nepalStats.all[10];
+		}
+	}
+	
+	setLoader();
+	
 	var apiURL = 'http://45.55.246.231:3000/api/' + query_type + '?from=';
 	apiURL += fromYear + '&to=';
 	apiURL += toYear + '&bbox=' + bbox;
+	console.log(apiURL);
 	var data = null;
 	$.ajax({
 		url: apiURL,
