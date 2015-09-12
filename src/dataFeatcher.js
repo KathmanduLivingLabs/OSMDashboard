@@ -28,7 +28,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 				return nepalStats.all[8];
 			case 'tourist_interest':
 				return nepalStats.all[9];
-			case 'settlements':
+			case 'settlement':
 				return nepalStats.all[10];
 		}
 	} else {
