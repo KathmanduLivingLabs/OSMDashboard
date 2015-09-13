@@ -17,9 +17,9 @@ export default class App extends React.Component {
 		super();
 		this.state = {
 			searchText: '',
-			bbox: [],
-			fromYear: 2010,
-			toYear: 2015
+			bbox: '',
+			fromYear: '2010',
+			toYear: '2015'
 		};
 	}
 
@@ -67,7 +67,10 @@ export default class App extends React.Component {
 						setToYear={this.setToYear.bind(this)} />
 					<div className="all-border">
 						<Map />
-						<Charts />
+						<Charts 
+							fromYear={this.state.fromYear}
+							toYear={this.state.toYear}
+							bbox={this.state.bbox} />
 					</div>
 					<div className="stats">
 						<MapStats />

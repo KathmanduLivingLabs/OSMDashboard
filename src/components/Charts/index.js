@@ -20,7 +20,10 @@ export default class Charts extends React.Component {
 		};
 	}
 	componentDidMount() {
-		this.setChartData();
+		var fromYear = this.props.fromYear,
+				toYear = this.props.toYear,
+				bbox = this.props.bbox;
+		this.setChartData(fromYear, toYear, bbox);
 		this.makeChart(chartData[0], 'M', '#chart_1');
 		this.makeChart(chartData[1], '', '#chart_2');
 		this.makeChart(chartData[2], '', '#chart_3');
@@ -141,20 +144,20 @@ export default class Charts extends React.Component {
 	}
 
 	// sets chart data and options for all charts 
-	setChartData() {
-		var roads = fetchData('roads', '2010', '2015');
-		var waterways = fetchData('waterways', '2010', '2015');
-		var eduInstitute = fetchData('edu_institute', '2010', '2015');
-		var buildings = fetchData('buildings', '2010', '2015');
-		var medical = fetchData('medical', '2010', '2015');
-		var financialInstitue = fetchData('financial_institute', '2010', '2015');
-		var govOffices = fetchData('gov_offices', '2010', '2015');
-		var historicSites = fetchData('historic_sites', '2010', '2015');
-		var naturalHeritage = fetchData('natural_heritage', '2010', '2015');
-		var touristInterest = fetchData('tourist_interest', '2010', '2015');
-		var settlement = fetchData('settlement', '2010', '2015');
-		var e_i_y = fetchData('e_i_y', '2010', '2015');
-		var users = fetchData('users', '2010', '2015');
+	setChartData(fromYear, toYear, bbox) {
+		var roads = fetchData('roads', fromYear, toYear, bbox);
+		var waterways = fetchData('waterways', fromYear, toYear, bbox);
+		var eduInstitute = fetchData('edu_institute', fromYear, toYear, bbox);
+		var buildings = fetchData('buildings', fromYear, toYear, bbox);
+		var medical = fetchData('medical', fromYear, toYear, bbox);
+		var financialInstitue = fetchData('financial_institute', fromYear, toYear, bbox);
+		var govOffices = fetchData('gov_offices', fromYear, toYear, bbox);
+		var historicSites = fetchData('historic_sites', fromYear, toYear, bbox);
+		var naturalHeritage = fetchData('natural_heritage', fromYear, toYear, bbox);
+		var touristInterest = fetchData('tourist_interest', fromYear, toYear, bbox);
+		var settlement = fetchData('settlement', fromYear, toYear, bbox);
+		var e_i_y = fetchData('e_i_y', fromYear, toYear, bbox);
+		var users = fetchData('users', fromYear, toYear, bbox);
 
 		roads = this.removeNullFromChartDataAndSync(roads);
 		waterways = this.removeNullFromChartDataAndSync(waterways);

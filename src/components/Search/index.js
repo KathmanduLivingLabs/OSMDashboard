@@ -48,7 +48,7 @@ export default class Search extends React.Component {
 
 	selectItem(feature, e) {
 		var layer = L.geoJson(feature);
-		console.log(layer.getBounds);
+		console.log(layer.getBounds());
 	}
 
 	render() {
