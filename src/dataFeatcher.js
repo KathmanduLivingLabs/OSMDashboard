@@ -1,12 +1,11 @@
 function fetchData(query_type, fromYear, toYear, bbox) {
-	console.log("hello bello");
 	
 	
 	fromYear = (typeof fromYear === 'undefined') ? '2010' : fromYear;
 	toYear = (typeof toYear === 'undefined') ? '2010' : toYear;
-	bbox = (typeof bbox === 'undefined') ? '81.123,27.987,85.456,29.123' : bbox;
+	bbox = (typeof bbox === 'undefined') ? '' : bbox;
 	
-	if(bbox === '81.123,27.987,85.456,29.123' && fromYear === '2010' && toYear === '2015') {
+	if(bbox === '' && fromYear === '2010' && toYear === '2015') {
 		switch(query_type) {
 			case 'roads':
 				return nepalStats.all[0];
@@ -52,6 +51,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 			},
 			async: false
 		});
+		hideLoader();
 		return data;
 	}
 }
