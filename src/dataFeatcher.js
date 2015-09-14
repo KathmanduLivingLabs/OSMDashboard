@@ -38,7 +38,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 	
 		setLoader();
 		
-		var apiURL = 'http://45.55.246.231:3000/api/' + query_type + '?from=';
+		var apiURL = 'http://45.55.246.231:8000/api/' + query_type + '?from=';
 		apiURL += fromYear + '&to=';
 		apiURL += toYear + '&bbox=' + bbox;
 		console.log(apiURL);
