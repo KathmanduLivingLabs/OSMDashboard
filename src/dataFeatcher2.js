@@ -1,6 +1,6 @@
 var loadingDataDeffered = [];
 for(var i = 0; i < 13; i++)
-	loadingDataDeffered[0]= $.Deferred();
+	loadingDataDeffered[i]= $.Deferred();
 	
 function fetchData(query_type, fromYear, toYear, bbox) {
 	fromYear = (typeof fromYear === 'undefined') ? '2010' : fromYear;
