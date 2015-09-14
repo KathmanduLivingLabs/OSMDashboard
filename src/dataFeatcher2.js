@@ -1,4 +1,4 @@
-var loadingDataDeffered = []; = $.Deferred();
+var loadingDataDeffered = [];
 for(var i = 0; i < 13; i++)
 	loadingDataDeffered[0]= $.Deferred();
 	
