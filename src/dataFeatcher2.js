@@ -80,55 +80,55 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 				switch(query_type) {
 			case 'roads':
 				//return nepalStats.all[0];
-				loadingDataDeffered[0].resolve(nepalStats[0]);
+				loadingDataDeffered[0].resolve(data);
 				break;
 			case 'waterways':
 				//return nepalStats.all[1];
-				loadingDataDeffered[1].resolve(nepalStats[1]);
+				loadingDataDeffered[1].resolve(data);
 				break;
 			case 'edu_institute':
 				//return nepalStats.all[2];
-				loadingDataDeffered[2].resolve(nepalStats[2]);
+				loadingDataDeffered[2].resolve(data);
 				break;
 			case 'buildings':
 				//return nepalStats.all[3];
-				loadingDataDeffered[3].resolve(nepalStats[3]);
+				loadingDataDeffered[3].resolve(data);
 				break;
 			case 'medical':
 				//return nepalStats.all[4];
-				loadingDataDeffered[4].resolve(nepalStats[4]);
+				loadingDataDeffered[4].resolve(data);
 				break;
 			case 'financial_institute':
 				//return nepalStats.all[5];
-				loadingDataDeffered[5].resolve(nepalStats[5]);
+				loadingDataDeffered[5].resolve(data);
 				break;
 			case 'gov_offices':
 				//return nepalStats.all[6];
-				loadingDataDeffered[6].resolve(nepalStats[6]);
+				loadingDataDeffered[6].resolve(data);
 				break;
 			case 'historic_sites':
 				//return nepalStats.all[7];
-				loadingDataDeffered[7].resolve(nepalStats[7]);
+				loadingDataDeffered[7].resolve(data);
 				break;
 			case 'natural_heritage':
 				//return nepalStats.all[8];
-				loadingDataDeffered[8].resolve(nepalStats[8]);
+				loadingDataDeffered[8].resolve(data);
 				break;
 			case 'tourist_interest':
 				//return nepalStats.all[9];
-				loadingDataDeffered[9].resolve(nepalStats[9]);
+				loadingDataDeffered[9].resolve(data);
 				break;
 			case 'settlement':
 				//return nepalStats.all[10];
-				loadingDataDeffered[10].resolve(nepalStats[10]);
+				loadingDataDeffered[10].resolve(data);
 				break;
 			case 'e_i_y':
 				//return nepalStats.all[11];
-				loadingDataDeffered[11].resolve(nepalStats[11]);
+				loadingDataDeffered[11].resolve(data);
 				break;
 			case 'users':
 				//return nepalStats.all[12];
-				loadingDataDeffered[12].resolve(nepalStats[12]);
+				loadingDataDeffered[12].resolve(data);
 				break;
 		}
 				//loadingDataDeffered.resolve(data);
