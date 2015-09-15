@@ -328,12 +328,12 @@ export default class Charts extends React.Component {
 	// char navigation left click 
 	navLeftClick() {
 		var charts = document.getElementsByClassName('chart');
-		for(var i = 0; i < 12; i++) {
+		for(var i = 0; i < 13; i++) {
 			if(charts[i].className.indexOf('hide') === -1) {
 				charts[i].className += ' hide';
 				if(i - 1 === -1)
-					i = 12;
-				charts[(i - 1) % 12].className = 'chart';
+					i = 13;
+				charts[(i - 1) % 13].className = 'chart';
 				break;
 			}
 		}
@@ -342,10 +342,10 @@ export default class Charts extends React.Component {
 	// char navigation right click 
 	navRightClick() {
 		var charts = document.getElementsByClassName('chart');
-		for(var i = 0; i < 12; i++) {
+		for(var i = 0; i < 13; i++) {
 			if(charts[i].className.indexOf('hide') === -1) {
 				charts[i].className += ' hide';
-				charts[(i + 1) % 12].className = 'chart';
+				charts[(i + 1) % 13].className = 'chart';
 				break;
 			}
 		}
@@ -396,21 +396,26 @@ export default class Charts extends React.Component {
 						<span className="y-axis-label">No. of Historic Sites Edited</span>
 					</div>
 					<div id="chart_9" className="chart hide">
+						<span className="chart-title">Natural Heritage</span>
+						<span className="x-axis-label">Year</span>
+						<span className="y-axis-label">No. of Natural Heritage Edited</span>
+					</div>
+					<div id="chart_10" className="chart hide">
 						<span className="chart-title">Tourist Interest</span>
 						<span className="x-axis-label">Year</span>
 						<span className="y-axis-label">No. of Tourist Interest Edited</span>
 					</div>
-					<div id="chart_10" className="chart hide">
+					<div id="chart_11" className="chart hide">
 						<span className="chart-title">Settlement</span>
 						<span className="x-axis-label">Year</span>
 						<span className="y-axis-label">No. of Settlement Edited</span>
 					</div>
-					<div id="chart_11" className="chart hide">
+					<div id="chart_12" className="chart hide">
 						<span className="chart-title">Roads</span>
 						<span className="x-axis-label">Year</span>
 						<span className="y-axis-label">Length of Roads Edited</span>
 					</div>
-					<div id="chart_12" className="chart hide">
+					<div id="chart_13" className="chart hide">
 						<span className="chart-title">Waterways</span>
 						<span className="x-axis-label">Year</span>
 						<span className="y-axis-label">Length of Waterways Edited</span>

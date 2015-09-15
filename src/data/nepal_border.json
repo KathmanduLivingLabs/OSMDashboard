@@ -1,4 +1,8 @@
+<<<<<<< HEAD:src/data/nepal_border.js
+nepal_border = {
+=======
 {
+>>>>>>> aakashBranch:src/data/nepal_border.json
     "type": "FeatureCollection",
     "crs": {
         "type": "name",
