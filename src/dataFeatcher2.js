@@ -12,8 +12,8 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 			case 'roads':
 				//return nepalStats.all[0];
 				console.log("froom data featcher");
-				console.log(nepalStats[0]);
-				loadingDataDeffered[0].resolve(nepalStats[0], query_type);
+				console.log(nepalStats.all[0]);
+				loadingDataDeffered[0].resolve(nepalStats.all[0], query_type);
 				break;
 			case 'waterways':
 				//return nepalStats.all[1];
