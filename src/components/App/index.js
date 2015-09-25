@@ -3,10 +3,9 @@ var Header = require('../Header');
 var Filter = require('../Filter');
 var Search = require('../Search');
 var Map = require('../Map');
-var Charts = require('../Charts');
+var ChartMaker = require('../ChartMaker');
 var MapStats = require('../MapStats');
 var RecentMapper = require('../RecentMapper');
-var ErrorMsg = require('../ErrorMsg');
 var Footer = require('../Footer');
 
 require('./style.scss');
@@ -19,7 +18,8 @@ export default class App extends React.Component {
 			searchText: '',
 			bbox: '',
 			fromYear: '2010',
-			toYear: '2015'
+			toYear: '2015',
+			selectedLayer: null,
 		};
 	}
 
@@ -47,27 +47,29 @@ export default class App extends React.Component {
 		});
 	}
 
+	setSelectedLayerAndBbox(selectedLayer, bbox) {
+		this.setState({
+			selectedLayer: selectedLayer,
+			bbox: bbox
+		});
+	}
+
 	render() {
 		return( 
 				<div className="container">
 					<div id="overlay"></div>
-					<div className="sk-folding-cube">
-						<div className="sk-cube1 sk-cube"></div>
-						<div className="sk-cube2 sk-cube"></div>
-						<div className="sk-cube4 sk-cube"></div>
-						<div className="sk-cube3 sk-cube"></div>
-					</div>
 				<Header />
 				<div className="content">
 					<Search 
 						setSearchText={this.setSearchText.bind(this)}
-						setBbox={this.setBbox.bind(this)} />
+						setBbox={this.setBbox.bind(this)} 
+						setSelectedLayerAndBbox={this.setSelectedLayerAndBbox.bind(this)} />
 					<Filter 
 						setFromYear={this.setFromYear.bind(this)}
 						setToYear={this.setToYear.bind(this)} />
 					<div className="all-border">
 						<Map />
-						<Charts 
+						<ChartMaker 
 							fromYear={this.state.fromYear}
 							toYear={this.state.toYear}
 							bbox={this.state.bbox} />

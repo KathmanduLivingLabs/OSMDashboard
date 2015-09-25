@@ -48,7 +48,11 @@ export default class Search extends React.Component {
 
 	selectItem(feature, e) {
 		var layer = L.geoJson(feature);
-		console.log(layer.getBounds());
+		var bbox = '' + layer.getBounds()._northEast.lng + ',' + layer.getBounds()._northEast.lat + ','
+							 + layer.getBounds()._southWest.lng + ',' + layer.getBounds()._southWest.lat;
+							 console.log(bbox);
+		this.props.setSelectedLayerAndBbox(layer, bbox);
+
 	}
 
 	render() {
@@ -69,7 +73,7 @@ export default class Search extends React.Component {
 						this.state.searchResultList.map(function(item, index) {
 							return(<span 
 											key={index}
-											onClick={_this.selectItem.bind(this, item)}>
+											onClick={_this.selectItem.bind(_this, item)}>
 												{item.properties.NAME}
 											</span>);
 						})
