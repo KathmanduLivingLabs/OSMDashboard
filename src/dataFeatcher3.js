@@ -17,18 +17,20 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 
 		switch(diff) {
 			case 0:
-				allData = nepalStats_month[QUERYS.indexOf(query_type)].map(function(item) {
+				allData = nepalStats_month.all[QUERYS.indexOf(query_type)].map(function(item) {
 					if(item.year.indexOf(toYear) !== -1)
-						loadingDataDeffered[nepalStats_month[QUERYS.indexOf(query_type)]].resolve(item, query_type);
+						return item;
 			});
+			loadingDataDeffered[nepalStats_month[QUERYS.indexOf(query_type)]].resolve(allData, query_type);
 				break;
 			case 1:
-				allData = nepalStats_month[QUERYS.indexOf(query_type)].map(function(item, index) {
+				allData = nepalStats_month.all[QUERYS.indexOf(query_type)].map(function(item, index) {
 				if((item.year.indexOf(toYear) !== -1) || (item.year.indexOf(fromYear) !== -1)) {
 						if(index % 2 === 0)
-							loadingDataDeffered[nepalStats_month[QUERYS.indexOf(query_type)]].resolve(item, query_type);
+							return item;
 				}
 			});
+			loadingDataDeffered[nepalStats_month[QUERYS.indexOf(query_type)]].resolve(allData, query_type);
 				break;
 			default:
 				var years = (() => {
@@ -40,7 +42,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 				console.log('default');
 				console.log('query_type = ' + query_type);
 				console.log('indexOf = ' + QUERYS.indexOf(query_type));
-				allData = nepalStats_month[QUERYS.indexOf(query_type)].map(function(item, index) {
+				allData = nepalStats_month.all[QUERYS.indexOf(query_type)].map(function(item, index) {
 					var mybool = (() => {
 						var result = false;
 						for(var i = 0; i < years.length; i++)
