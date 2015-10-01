@@ -43,6 +43,8 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 						tempYears.push(fromYear + i);
 					return tempYears;
 				})();
+				console.log('years');
+				console.log(years);
 				console.log('default');
 				console.log('query_type = ' + query_type);
 				console.log('indexOf = ' + QUERYS.indexOf(query_type));
