@@ -19,14 +19,14 @@ function featchData(query_type, fromYear, toYear, bbox) {
 			case 0:
 				allData = nepalStats_month[QUERYS.indexOf(query_type)].map(function(item) {
 					if(item.year.indexOf(toYear) !== -1)
-						return item;
+						loadingDataDeffered[nepalStats_month[QUERYS.indexOf(query_type)]].resolve(item, query_type);
 			});
 				break;
 			case 1:
 				allData = nepalStats_month[QUERIES.indexOf(query_type)].map(function(item, index) {
 				if((item.year.indexOf(toYear) !== -1) || (item.year.indexOf(fromYear) !== -1)) {
 						if(index % 2 === 0)
-							return item;
+							loadingDataDeffered[nepalStats_month[QUERYS.indexOf(query_type)]].resolve(item, query_type);
 				}
 			});
 				break;
@@ -46,7 +46,7 @@ function featchData(query_type, fromYear, toYear, bbox) {
 					})();
 					if(result) {
 						if(index === 0)
-							return item;
+							loadingDataDeffered[nepalStats_month[QUERYS.indexOf(query_type)]].resolve(item, query_type);
 					}	
 			});
 		}
