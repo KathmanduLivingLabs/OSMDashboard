@@ -50,7 +50,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 				console.log('indexOf = ' + QUERYS.indexOf(query_type));
 				console.log('items: ');
 				allData = nepalStats_month.all[QUERYS.indexOf(query_type)].map(function(item, index) {
-					console.log(typeof item.year);
+					console.log(item.year);
 					var mybool = (() => {
 						var result = false;
 						for(var i = 0; i < years.length; i++)
