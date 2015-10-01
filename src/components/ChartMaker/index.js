@@ -1,6 +1,8 @@
 import React from 'react';
 import Chart from '../Chart';
 
+require('./style.scss')
+
 const QUERYTYPES = ['roads', 'waterways', 'edu_institute', 'buildings', 'medical',
 						'financial_institute', 'gov_offices', 'historic_sites', 'natural_heritage',
 						'tourist_interest', 'settlement', 'e_i_y', 'users'];
@@ -11,8 +13,8 @@ export default class ChartMaker extends React.Component {
 		this.allData = [];
 		this.queryArgs = [];
 		this.state = {
-			test: 'abc',
-			OSMData: []
+			OSMData: [],
+			childCount: 0,
 		}
 	}
 
@@ -20,10 +22,31 @@ export default class ChartMaker extends React.Component {
 		this.loadData();
 	}
 
+	componentDidUpdate() {
+		if(this.state.childCount === 12) {
+				setTimeout(function() {
+					var allCharts = document.getElementsByClassName('all-charts');
+					for(var i = 1; i < allCharts.length; i++) 
+						allCharts[i].className = 'all-charts hide';
+				}, 1000);
+
+		}
+	}
+
 	setOSMData(OSMData) {
 		this.setState({
 			OSMData: OSMData
 		});
+	}
+
+	incrementChildCount() {
+		if(this.state.childCount < 12)
+			++this.state.childCount;
+		else {
+			this.setState({
+				childCount: this.state.childCount + 1
+			});
+		}
 	}
 
 	loadData() {
@@ -52,15 +75,57 @@ export default class ChartMaker extends React.Component {
 		});
 	}
 
-	render() {
-		return(
-			<div>
-			{
-			this.state.OSMData.map(function(item, index){
-				console.log(<Chart />)
-				return <Chart />
-			})
+	// char navigation left click 
+	navLeftClick() {
+		var charts = document.getElementsByClassName('all-charts');
+		for(var i = 0; i < 12; i++) {
+			if(charts[i].className.indexOf('hide') === -1) {
+				charts[i].className += ' hide';
+				if(i - 1 === -1)
+					i = 12;
+				charts[(i - 1) % 12].className = 'all-charts';
+				break;
 			}
+		}
+	}
+
+	// char navigation right click 
+	navRightClick() {
+		var charts = document.getElementsByClassName('all-charts');
+		for(var i = 0; i < 12; i++) {
+			if(charts[i].className.indexOf('hide') === -1) {
+				charts[i].className += ' hide';
+				charts[(i + 1) % 12].className = 'all-charts';
+				break;
+			}
+		}
+	}
+
+	hoverOnChart() {
+		document.getElementById('nav_left').className = 'nav-left';
+		document.getElementById('nav_right').className = 'nav-right';
+	}
+
+	hoverOutOnChart() {
+		document.getElementById('nav_left').className = 'nav-left hide';
+		document.getElementById('nav_right').className = 'nav-left hide';
+	}
+
+	render() {
+		var _this = this;
+		return(
+			<div className="chart-wrapper" 
+				onMouseOver={this.hoverOnChart} 
+				onMouseOut={this.hoverOutOnChart}>
+				<div id="nav_left" className="nav-left hide" onClick={this.navLeftClick}></div>
+				<div id="nav_right" className="nav-right hide" onClick={this.navRightClick}></div>
+				{
+					this.state.OSMData.map(function(item, index) {
+						return <Chart key={index} feature={item} 
+										index={index}
+										incrementChildCount={_this.incrementChildCount.bind(_this)} />
+					})
+				}
 			</div>
 		)
 	}

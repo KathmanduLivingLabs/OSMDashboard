@@ -47,14 +47,20 @@ export default class App extends React.Component {
 		});
 	}
 
-	setSelectedLayerAndBbox(selectedLayer, bbox) {
+	setSelectedLayerBboxFromAndTo(selectedLayer, bbox) {
 		this.setState({
 			selectedLayer: selectedLayer,
-			bbox: bbox
+			bbox: bbox,
+			fromYear: from,
+			toYear: to
 		});
 	}
 
 	render() {
+					/*<Filter 
+						setFromYear={this.setFromYear.bind(this)}
+						setToYear={this.setToYear.bind(this)} />
+					 */
 		return( 
 				<div className="container">
 					<div id="overlay"></div>
@@ -63,10 +69,7 @@ export default class App extends React.Component {
 					<Search 
 						setSearchText={this.setSearchText.bind(this)}
 						setBbox={this.setBbox.bind(this)} 
-						setSelectedLayerAndBbox={this.setSelectedLayerAndBbox.bind(this)} />
-					<Filter 
-						setFromYear={this.setFromYear.bind(this)}
-						setToYear={this.setToYear.bind(this)} />
+						setSelectedLayerBboxFromAndTo={this.setSelectedLayerBboxFromAndTo.bind(this)} />
 					<div className="all-border">
 						<Map />
 						<ChartMaker 
@@ -75,10 +78,8 @@ export default class App extends React.Component {
 							bbox={this.state.bbox} />
 					</div>
 					<div className="stats">
-						<MapStats />
 					</div>
 					<div className="recentmapper">
-						<RecentMapper />
 					</div>	
 				</div>
 				<Footer />	

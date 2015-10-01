@@ -1,8 +1,8 @@
 .all-charts {
 	position: relative;
 	display: inline-block;
-	height: auto;
-	width: 500px;
+	height: 350px;
+	width: 100%;
 	margin-left: 50px;
 	margin-top: 15px;
 	vertical-align: top;
@@ -10,57 +10,9 @@
 
 .chart-title {
 	position: absolute;
-	top: -25px;
+	top: -15px;
 	right: 120px;
 	padding: 0px 5px;
-	border-radius: 4px;
 	opacity: 1;
 	background: #8C8888;
 }
-
-.x-axis-label {
-	position: absolute;
-	bottom: -30px;
-	left: 250px;
-}
-
-.y-axis-label {
-	position: absolute;
-	top: 150px;
-	left: -60px;
-	display: inline-block;
-	transform: rotate(-90deg);
-}
-
-.nav-left {
-	position: absolute;
-	top: 170px;
-	left: 0;
-	background: url('../../images/left_arrow.svg');
-	background-size: 50px 50px;
-	width: 50px;
-	height: 50px;
-}
-
-.nav-right {
-	position: absolute;
-	top: 170px;
-	right: 0;
-	background: url('../../images/right_arrow.svg');
-	background-size: 50px 50px;
-	width: 50px;
-	height: 50px;
-}
-
-.hide {
-	display: none;
-}
-
-.chartist-tooltip {
-	position: absolute;
-	color: white;
-	padding: 10px;
-	background-color: rgba(214, 54, 66, 0.6);
-	border-radius: 100px;
-}
-

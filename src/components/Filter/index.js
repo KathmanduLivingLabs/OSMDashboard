@@ -45,12 +45,12 @@ export default class Filter extends React.Component {
 				</div>
 				<div className="time-filter">
 					<select className="input_filter" onChange={this.setToYear}>
-						<option>2010</option>
-						<option>2011</option>
-						<option>2012</option>
-						<option>2013</option>
-						<option>2014</option>
 						<option>2015</option>
+						<option>2014</option>
+						<option>2013</option>
+						<option>2012</option>
+						<option>2011</option>
+						<option>2010</option>
 					</select>
 				</div>
 				<div className="apply-filter" onClick={this.applyFilter}>Apply Filter</div>

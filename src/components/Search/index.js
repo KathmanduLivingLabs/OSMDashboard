@@ -9,6 +9,8 @@ require('./style.scss');
 export default class Search extends React.Component {
 	constructor() {
 		super();
+		this.selectedFeature = null;
+		this.bbox = null;
 		this.state = {
 			searchText: '',
 			searchResultList: []
@@ -47,11 +49,34 @@ export default class Search extends React.Component {
 	}
 
 	selectItem(feature, e) {
-		var layer = L.geoJson(feature);
-		var bbox = '' + layer.getBounds()._northEast.lng + ',' + layer.getBounds()._northEast.lat + ','
-							 + layer.getBounds()._southWest.lng + ',' + layer.getBounds()._southWest.lat;
-							 console.log(bbox);
-		this.props.setSelectedLayerAndBbox(layer, bbox);
+		this.selectedFeature = L.geoJson(feature);
+		this.bbox = '' + this.selectedFeature.getBounds()._northEast.lng + ',' 
+							 + this.selectedFeature.getBounds()._northEast.lat + ','
+							 + this.selectedFeature.getBounds()._southWest.lng + ',' 
+							 + this.selectedFeature.getBounds()._southWest.lat;
+		document.getElementById('search_input').value = feature.properties.NAME;
+		document.getElementById('search_input').focus();
+		document.getElementById('search_input').select();
+		//this.props.setSelectedLayerAndBbox(layer, bbox);
+
+	}
+
+	submitAll() {
+		var from = document.getElementsByClassName('input_filter')[0];
+		from = from.options[from.selectedIndex].value;
+		var to = document.getElementsByClassName('input_filter')[1];
+		to = to.options[to.selectedIndex].value;
+		console.log(from);
+		console.log(to);
+		console.log(this.bbox);
+		console.log(this.selectedFeature);
+		if(!this.state.selectedFeature) {
+			
+		} else {
+			if(!this.state.bbox)
+				this.state.bbox = '';
+			this.props.setSelectedLayerBboxFromAndTo(this.selectedFeature, this.bbox, from, to);
+		}
 
 	}
 
@@ -66,8 +91,29 @@ export default class Search extends React.Component {
 						className="search-input" 
 						type="text" 
 						placeholder="Search for Places"/>
-					<div className="search-btn">Search</div>
+					</div>
+
+				<div className="time-filter">
+					<select className="input_filter">
+						<option value="2010">2010</option>
+						<option value="2011">2011</option>
+						<option value="2012">2012</option>
+						<option value="2013">2013</option>
+						<option vlaue="2014">2014</option>
+						<option value="2015">2015</option>
+					</select>
 				</div>
+				<div className="time-filter">
+					<select className="input_filter">
+						<option value="2015">2015</option>
+						<option value="2014">2014</option>
+						<option value="2013">2013</option>
+						<option value="2012">2012</option>
+						<option value="2011">2011</option>
+						<option value="2010">2010</option>
+					</select>
+				</div>
+					<div className="search-btn" onClick={this.submitAll.bind(this)}>Search</div>
 				<div className="search-result">
 					{
 						this.state.searchResultList.map(function(item, index) {
