@@ -21,7 +21,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 					if(item.year.indexOf(toYear) !== -1)
 						return item;
 			});
-			loadingDataDeffered[nepalStats_month[QUERYS.indexOf(query_type)]].resolve(allData, query_type);
+			loadingDataDeffered[nepalStats_month.all[QUERYS.indexOf(query_type)]].resolve(allData, query_type);
 				break;
 			case 1:
 				allData = nepalStats_month.all[QUERYS.indexOf(query_type)].map(function(item, index) {
@@ -30,7 +30,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 							return item;
 				}
 			});
-			loadingDataDeffered[nepalStats_month[QUERYS.indexOf(query_type)]].resolve(allData, query_type);
+			loadingDataDeffered[nepalStats_month.all[QUERYS.indexOf(query_type)]].resolve(allData, query_type);
 				break;
 			default:
 				var years = (() => {
@@ -56,7 +56,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 			});
 			console.log('allData');
 			console.log(allData);
-			loadingDataDeffered[nepalStats_month[QUERYS.indexOf(query_type)]].resolve(allData, query_type);
+			loadingDataDeffered[nepalStats_month.all[QUERYS.indexOf(query_type)]].resolve(allData, query_type);
 		}
 	}
 }
