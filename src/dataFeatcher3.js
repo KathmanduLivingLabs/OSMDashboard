@@ -11,6 +11,10 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 	toYear = (typeof toYear === 'undefined') ? '2010' : toYear;
 	bbox = (typeof bbox === 'undefined') ? '' : bbox;
 	var allData = [];
+	
+	console.log('from year = ' + fromYear);
+	console.log('to year = ' + toYear);
+	console.log('bbox = ' + bbox);
 
 	if(bbox === '') {
 		var diff = toYear - fromYear;
