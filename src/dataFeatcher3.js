@@ -23,7 +23,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 			});
 				break;
 			case 1:
-				allData = nepalStats_month[QUERIES.indexOf(query_type)].map(function(item, index) {
+				allData = nepalStats_month[QUERYS.indexOf(query_type)].map(function(item, index) {
 				if((item.year.indexOf(toYear) !== -1) || (item.year.indexOf(fromYear) !== -1)) {
 						if(index % 2 === 0)
 							loadingDataDeffered[nepalStats_month[QUERYS.indexOf(query_type)]].resolve(item, query_type);
@@ -37,7 +37,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 						tempYears.push(fromYear + i);
 					return tempYears;
 				})();
-				allData = nepalStats_month[QUERIES.indexOf(query_type)].map(function(item, index) {
+				allData = nepalStats_month[QUERYS.indexOf(query_type)].map(function(item, index) {
 					var mybool = (() => {
 						var result = false;
 						for(var i = 0; i < years.length; i++)
