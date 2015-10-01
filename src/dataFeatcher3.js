@@ -40,7 +40,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 				var years = (() => {
 					var tempYears = [];
 					for(var i = 0; i <= diff; i++) 
-						tempYears.push(fromYear + i);
+						tempYears.push(Number(fromYear) + i);
 					return tempYears;
 				})();
 				console.log('years');
