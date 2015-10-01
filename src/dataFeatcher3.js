@@ -55,7 +55,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 						var result = false;
 						for(var i = 0; i < years.length; i++)
 							result || item.year.indexOf(years[i].toString()) !== -1;
-							console.log('result = ' + item.year.indexOf(years[0].toString() !== -1));
+							console.log('result = ' + (item.year.indexOf(years[0].toString() !== -1)));
 						return result;
 					})();
 					if(mybool) {
