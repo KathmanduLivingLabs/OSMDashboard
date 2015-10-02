@@ -59,7 +59,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 					})();
 					if(mybool) {
 						if(prevValue !== 0) {
-							if(item.year.indexOf(prevValue.split('-')[0]) === -1)
+							if(item.year.indexOf(prevValue.year.split('-')[0]) === -1)
 								return item;
 						} else {
 							return item;
