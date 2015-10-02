@@ -59,8 +59,10 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 						return result;
 					})();
 					if(mybool) {
-						if(index === 0)
-							return item;
+						if(!!prevValue) {
+							if(item.year.indexOf(prevValue.split('-')[0]) === -1)
+								return item;
+						}
 					}	
 			});
 			console.log('allData');
