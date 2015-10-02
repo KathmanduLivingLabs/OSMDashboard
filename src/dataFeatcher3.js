@@ -49,8 +49,8 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 				console.log('query_type = ' + query_type);
 				console.log('indexOf = ' + QUERYS.indexOf(query_type));
 				console.log('items: ');
+				var prevValue = 0;
 				allData = nepalStats_month.all[QUERYS.indexOf(query_type)].map(function(item, index) {
-					var prevValue = 0;
 					var mybool = (() => {
 						var result = false;
 						for(var i = 0; i < years.length; i++)
