@@ -50,13 +50,11 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 				console.log('indexOf = ' + QUERYS.indexOf(query_type));
 				console.log('items: ');
 				allData = nepalStats_month.all[QUERYS.indexOf(query_type)].map(function(item, index) {
-					console.log(item.year);
 					var prevValue = 0;
 					var mybool = (() => {
 						var result = false;
 						for(var i = 0; i < years.length; i++)
 							result  = item.year.indexOf(years[i].toString()) !== -1 || result;
-							console.log(result);
 						return result;
 					})();
 					if(mybool) {
@@ -68,8 +66,6 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 						}
 					}	
 			});
-			console.log('allData');
-			console.log(allData);
 			loadingDataDeffered[nepalStats_month.all[QUERYS.indexOf(query_type)]].resolve(allData, query_type);
 		}
 	}
