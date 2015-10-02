@@ -51,6 +51,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 				console.log('items: ');
 				allData = nepalStats_month.all[QUERYS.indexOf(query_type)].map(function(item, index) {
 					console.log(item.year);
+					var prevValue = 0;
 					var mybool = (() => {
 						var result = false;
 						for(var i = 0; i < years.length; i++)
@@ -59,9 +60,11 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 						return result;
 					})();
 					if(mybool) {
-						if(!!prevValue) {
+						if(prevValue !== 0) {
 							if(item.year.indexOf(prevValue.split('-')[0]) === -1)
 								return item;
+						} else {
+							return item;
 						}
 					}	
 			});
