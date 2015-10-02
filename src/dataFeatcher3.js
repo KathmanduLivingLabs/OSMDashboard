@@ -60,15 +60,18 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 					console.log('mybool = ' + mybool);
 					if(mybool) {
 						if(prevValue !== 0) {
-							if(item.year.indexOf(prevValue.year.split('-')[0]) === -1)
+							if(item.year.indexOf(prevValue.year.split('-')[0]) === -1) {
+								prevValue = JSON.parse(JSON.stringify(item));
 								return item;
+							}
 						} else {
+							prevValue = JSON.parse(JSON.stringify(item));
 							return item;
 						}
 					}
-					console.log('bellyyyyyyyyyyy');
-					prevValue = JSON.parse(JSON.stringify(item));
-					console.log('prevValue' + prevValue);
+					//console.log('bellyyyyyyyyyyy');
+					//prevValue = JSON.parse(JSON.stringify(item));
+					//console.log('prevValue' + prevValue);
 			});
 			loadingDataDeffered[QUERYS.indexOf(query_type)].resolve(allData, query_type);
 		}
