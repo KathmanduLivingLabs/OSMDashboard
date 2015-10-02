@@ -66,8 +66,9 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 							return item;
 						}
 					}
+					console.log('bellyyyyyyyyyyy');
 					prevValue = JSON.parse(JSON.stringify(item));
-					console.log(prevValue);
+					console.log('prevValue' + prevValue);
 			});
 			loadingDataDeffered[QUERYS.indexOf(query_type)].resolve(allData, query_type);
 		}
