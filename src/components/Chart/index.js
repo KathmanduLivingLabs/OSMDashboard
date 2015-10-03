@@ -40,7 +40,8 @@ export default class Charts extends React.Component {
 					else
 						return value;
 				}
-			}
+			},
+			lineSmooth: false
 		};
 
 		return(
