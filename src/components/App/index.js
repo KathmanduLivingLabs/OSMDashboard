@@ -20,7 +20,21 @@ export default class App extends React.Component {
 			fromYear: '2010',
 			toYear: '2015',
 			selectedLayer: null,
+			loadData: () => {},
+			chartMakerThis: null	
 		};
+	}
+
+	setChartMakerThis(that) {
+		this.setState({
+			chartMakerThis: this
+		});
+	}
+
+	setLoadData(loadData) {
+		this.setState({
+			loadData: loadData
+		});
 	}
 
 	setSearchText(searchText) {
@@ -69,10 +83,14 @@ export default class App extends React.Component {
 					<Search 
 						setSearchText={this.setSearchText.bind(this)}
 						setBbox={this.setBbox.bind(this)} 
+						myrefs={this.refs.chartMaker}
+						chartMakerThis={this.state.chartMakerThis}
 						setSelectedLayerBboxFromAndTo={this.setSelectedLayerBboxFromAndTo.bind(this)} />
 					<div className="all-border">
 						<Map />
-						<ChartMaker 
+						<ChartMaker ref="chartMaker"
+							setLoadData = {this.setLoadData.bind(this)}
+							setChartMakerThis={this.setChartMakerThis.bind(this)}
 							fromYear={this.state.fromYear}
 							toYear={this.state.toYear}
 							bbox={this.state.bbox} />

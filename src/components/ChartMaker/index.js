@@ -7,6 +7,7 @@ const QUERYTYPES = ['roads', 'waterways', 'edu_institute', 'buildings', 'medical
 						'financial_institute', 'gov_offices', 'historic_sites', 'natural_heritage',
 						'tourist_interest', 'settlement', 'e_i_y', 'users'];
 
+var chartMakerThis = null;
 export default class ChartMaker extends React.Component {
 	constructor() {
 		super();
@@ -19,17 +20,19 @@ export default class ChartMaker extends React.Component {
 	}
 
 	componentDidMount() {
+		this.props.setLoadData(this.loadData.bind(this));
 		this.loadData();
+		this.props.setChartMakerThis(this);
 	}
 
-	componentDidUpdate() {
+	componentDidUpdate(prevProps, prevState) {
+		console.log('i am updating');
 		if(this.state.childCount === 12) {
 				setTimeout(function() {
 					var allCharts = document.getElementsByClassName('all-charts');
 					for(var i = 1; i < allCharts.length; i++) 
 						allCharts[i].className = 'all-charts hide';
 				}, 1000);
-
 		}
 	}
 
@@ -50,7 +53,9 @@ export default class ChartMaker extends React.Component {
 	}
 
 	loadData() {
+		console.log('loading data to tototot.....');
 		var _this = this;
+		chartMakerThis = this;
 		this.queryArgs = [this.props.fromYear, this.props.toYear, this.props.bbox];
 
 		for(var i = 0; i < 13; i++)
@@ -71,7 +76,31 @@ export default class ChartMaker extends React.Component {
 			loadingDataDeffered[11],
 			loadingDataDeffered[12]
 		).done(function(...OSMData) {
-			_this.setOSMData(OSMData);
+			var newOSMData = JSON.parse(JSON.stringify(OSMData));
+			var oldOSMData = OSMData;
+			OSMData.map(function(item, index) {
+				for(var i = 0; i < 35; i++) {
+					if(typeof item[0][i] === 'undefined') {
+						OSMData[index][0].splice(i, 1);
+					}
+				}
+			});
+			OSMData.map(function(item, index) {
+				for(var i = 0; i < 18; i++) {
+					if(typeof item[0][i] === 'undefined') {
+						OSMData[index][0].splice(i, 1);
+					}
+				}
+			});
+			OSMData.map(function(item, index) {
+				for(var i = 0; i < 18; i++) {
+					if(typeof item[0][i] === 'undefined') {
+						OSMData[index][0].splice(i, 1);
+					}
+				}
+			});
+			chartMakerThis.setOSMData(OSMData);
+			chartMakerThis.forceUpdate();
 		});
 	}
 

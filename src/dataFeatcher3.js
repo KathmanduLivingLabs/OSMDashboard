@@ -38,16 +38,20 @@ function featchData(query_type, fromYear, toYear, bbox) {
 					return tempYears;
 				})();
 				allData = nepalStats_month[QUERIES.indexOf(query_type)].map(function(item, index) {
+					var prevValue = null;
 					var mybool = (() => {
 						var result = false;
 						for(var i = 0; i < years.length; i++)
-							result || index.year.indexOf(years[i]);
+							result || item.year.indexOf(years[i]);
 						return result;
 					})();
-					if(result) {
-						if(index === 0)
-							return item;
+					if(mybool) {
+						if(!!prevValue) {
+							if(item.year.indexOf(prevValue.split('-')[0]) === -1)
+								return item;
+						}
 					}	
+					prevValue = item;
 			});
 		}
 	}

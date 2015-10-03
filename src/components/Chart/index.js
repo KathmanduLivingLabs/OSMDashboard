@@ -15,7 +15,7 @@ export default class Charts extends React.Component {
 	render() {
 		var _this = this;
 		var yearLabels = this.props.feature[0].map(function(item) {
-			return item.year;
+			return item.year.split('-')[0];
 		});
 
 		var yearSeries = this.props.feature[0].map(function(item) {

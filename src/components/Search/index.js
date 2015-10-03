@@ -1,11 +1,12 @@
 var React = require('react');
 var districts = require('../../data/district.geojson');
-var vdcs = require('../../data/vdc.geojson');
+//var vdcs = require('../../data/vdc.geojson');
 var L = require('leaflet');
 
 require('./style.scss');
 
-
+var mySelectedFeature = null;
+var myBbox = null;
 export default class Search extends React.Component {
 	constructor() {
 		super();
@@ -15,6 +16,17 @@ export default class Search extends React.Component {
 			searchText: '',
 			searchResultList: []
 		};
+	}
+
+	componentDidMount() {
+		$("#search_input").keyup(function (e) {
+			if (e.keyCode == 13) {
+				if(document.getElementById('search_input').value.toLowerCase() === 'nepal') {
+					myBbox = '';
+					mySelectedFeature = {};
+				}
+			}
+		});
 	}
 
 	setSearchText(e) {
@@ -34,26 +46,29 @@ export default class Search extends React.Component {
 			return item.properties.NAME.toLowerCase().indexOf(e.target.value.toLowerCase()) === 0;
 		});
 
+		/*
 		var updatedList_2 = vdcs.features;
 		updatedList_2 = updatedList_2.filter(function(item) {
 			return item.properties.NAME.toLowerCase().indexOf(e.target.value.toLowerCase()) === 0;
 		});
+	 */
 
 		updatedList.sort(function(a, b) {
 			return a.properties.NAME.localeCompare(b.properties.NAME);
 		});
-		var finalList = updatedList.concat(updatedList_2);
+		//var finalList = updatedList.concat(updatedList_2);
+		var finalList = updatedList;
 		this.setSearchResultList(finalList);
 		if(e.target.value === '')
 			this.setSearchResultList([]);
 	}
 
 	selectItem(feature, e) {
-		this.selectedFeature = L.geoJson(feature);
-		this.bbox = '' + this.selectedFeature.getBounds()._northEast.lng + ',' 
-							 + this.selectedFeature.getBounds()._northEast.lat + ','
-							 + this.selectedFeature.getBounds()._southWest.lng + ',' 
-							 + this.selectedFeature.getBounds()._southWest.lat;
+		mySelectedFeature = L.geoJson(feature);
+		myBbox = '' + mySelectedFeature.getBounds()._northEast.lng + ',' 
+							 + mySelectedFeature.getBounds()._northEast.lat + ','
+							 + mySelectedFeature.getBounds()._southWest.lng + ',' 
+							 + mySelectedFeature.getBounds()._southWest.lat;
 		document.getElementById('search_input').value = feature.properties.NAME;
 		document.getElementById('search_input').focus();
 		document.getElementById('search_input').select();
@@ -66,17 +81,18 @@ export default class Search extends React.Component {
 		from = from.options[from.selectedIndex].value;
 		var to = document.getElementsByClassName('input_filter')[1];
 		to = to.options[to.selectedIndex].value;
-		console.log(from);
-		console.log(to);
-		console.log(this.bbox);
-		console.log(this.selectedFeature);
 		if(!this.state.selectedFeature) {
 			
 		} else {
 			if(!this.state.bbox)
 				this.state.bbox = '';
-			this.props.setSelectedLayerBboxFromAndTo(this.selectedFeature, this.bbox, from, to);
+			this.props.setSelectedLayerBboxFromAndTo(mySelectedFeature, myBbox, from, to);
 		}
+		console.log('chartMaketThsi');
+		console.log(this.props.chartMakerThis);
+		//this.props.myrefs.loadData.call(this.props.chartMakerThis);
+		this.props.myrefs.loadData();
+		//this.props.loadData('abc');
 
 	}
 
