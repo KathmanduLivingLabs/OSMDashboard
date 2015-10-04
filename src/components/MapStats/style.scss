@@ -1,0 +1,51 @@
+.map-stat {
+	bottom-border: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+.map.stat-row {
+	border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.map-stat-row {
+	span {
+		margin-left: 10px;
+	}
+}
+.map.stat-row-color {
+	border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.map-stat-row-color {
+	span {
+		margin-left: 10px;
+	}
+}
+.map-stat-row-color{
+	height: 35px;
+	width: 1150px;
+	margin-bottom: 5px;	
+	margin-top: 5px;
+	background-color: rgba(0,0,0,0.2);        
+}
+.map-stat-row{
+	height: 35px;
+	margin-top: 5px;
+}
+.col-1{
+	display: inline-block;
+	width: 250px;
+}
+.col-2{
+	display: inline-block;
+	width: 150px;
+}
+.map-stat-table{
+	position: relative;
+	left: 50%;
+	margin-left: -570px;
+}
+.map-stat-title{
+	position: relative;
+	left: 8px;
+	font-size: 30px;
+}
