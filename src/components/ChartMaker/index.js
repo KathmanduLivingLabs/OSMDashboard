@@ -120,6 +120,7 @@ export default class ChartMaker extends React.Component {
 
 	// char navigation right click 
 	navRightClick() {
+		console.log('right click');
 		var charts = document.getElementsByClassName('all-charts');
 		for(var i = 0; i < 12; i++) {
 			if(charts[i].className.indexOf('hide') === -1) {
