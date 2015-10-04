@@ -14,10 +14,6 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 	toYear = (typeof toYear === 'undefined') ? '2010' : toYear;
 	bbox = (typeof bbox === 'undefined') ? '' : bbox;
 	var allData = [];
-	
-	//console.log('from year = ' + fromYear);
-	//console.log('to year = ' + toYear);
-	//console.log('bbox = ' + bbox);
 
 	if(bbox === '') {
 		var diff = toYear - fromYear;
@@ -46,12 +42,6 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 						tempYears.push(Number(fromYear) + i);
 					return tempYears;
 				})();
-				console.log('years');
-				console.log(years);
-				//console.log('default');
-				//console.log('query_type = ' + query_type);
-				//console.log('indexOf = ' + QUERYS.indexOf(query_type));
-				//console.log('items: ');
 				var prevValue = 0;
 				allData = nepalStats.all[QUERYS.indexOf(query_type)].map(function(item, index) {
 					var mybool = (() => {
@@ -60,12 +50,10 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 							result  = item.year.indexOf(years[i].toString()) !== -1 || result;
 						return result;
 					})();
-					//console.log('mybool = ' + mybool);
 					if(mybool) {
 						if(prevValue !== 0) {
 							if(item.year.indexOf(prevValue.year.split('-')[0]) === -1) {
 								prevValue = JSON.parse(JSON.stringify(item));
-								//console.log(item);
 								return item;
 							}
 						} else {
@@ -73,9 +61,6 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 							return item;
 						}
 					}
-					//console.log('bellyyyyyyyyyyy');
-					//prevValue = JSON.parse(JSON.stringify(item));
-					//console.log('prevValue' + prevValue);
 			});
 			loadingDataDeffered[QUERYS.indexOf(query_type)].resolve(allData, query_type);
 		}
