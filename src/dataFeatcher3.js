@@ -3,8 +3,11 @@ const QUERYS = ['roads', 'waterways', 'edu_institute', 'buildings', 'medical',
 						'tourist_interest', 'settlement', 'e_i_y', 'users'];
 
 var loadingDataDeffered = [];
-for(var i = 0; i < 13; i++)
-	loadingDataDeffered[i]= $.Deferred();
+
+function initalizeDeferred() {
+	for(var i = 0; i < 13; i++)
+		loadingDataDeffered[i]= $.Deferred();
+}
 
 function fetchData(query_type, fromYear, toYear, bbox) {
 	fromYear = (typeof fromYear === 'undefined') ? '2010' : fromYear;
