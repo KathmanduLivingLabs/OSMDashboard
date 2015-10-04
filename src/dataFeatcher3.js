@@ -12,9 +12,9 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 	bbox = (typeof bbox === 'undefined') ? '' : bbox;
 	var allData = [];
 	
-	console.log('from year = ' + fromYear);
-	console.log('to year = ' + toYear);
-	console.log('bbox = ' + bbox);
+	//console.log('from year = ' + fromYear);
+	//console.log('to year = ' + toYear);
+	//console.log('bbox = ' + bbox);
 
 	if(bbox === '') {
 		var diff = toYear - fromYear;
@@ -45,10 +45,10 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 				})();
 				console.log('years');
 				console.log(years);
-				console.log('default');
-				console.log('query_type = ' + query_type);
-				console.log('indexOf = ' + QUERYS.indexOf(query_type));
-				console.log('items: ');
+				//console.log('default');
+				//console.log('query_type = ' + query_type);
+				//console.log('indexOf = ' + QUERYS.indexOf(query_type));
+				//console.log('items: ');
 				var prevValue = 0;
 				allData = nepalStats.all[QUERYS.indexOf(query_type)].map(function(item, index) {
 					var mybool = (() => {
@@ -57,12 +57,12 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 							result  = item.year.indexOf(years[i].toString()) !== -1 || result;
 						return result;
 					})();
-					console.log('mybool = ' + mybool);
+					//console.log('mybool = ' + mybool);
 					if(mybool) {
 						if(prevValue !== 0) {
 							if(item.year.indexOf(prevValue.year.split('-')[0]) === -1) {
 								prevValue = JSON.parse(JSON.stringify(item));
-								console.log(item);
+								//console.log(item);
 								return item;
 							}
 						} else {
