@@ -99,6 +99,8 @@ export default class ChartMaker extends React.Component {
 					}
 				}
 			});
+			console.log('this is osm data');
+			console.log(OSMData);
 			chartMakerThis.setOSMData(OSMData);
 			chartMakerThis.forceUpdate();
 		});
