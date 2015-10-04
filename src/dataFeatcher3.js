@@ -24,14 +24,14 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 
 		switch(diff) {
 			case 0:
-				allData = nepalStats.all[QUERYS.indexOf(query_type)].map(function(item) {
+				allData = nepalStats_month.all[QUERYS.indexOf(query_type)].map(function(item) {
 					if(item.year.indexOf(toYear) !== -1)
 						return item;
 			});
 			loadingDataDeffered[QUERYS.indexOf(query_type)].resolve(allData, query_type);
 				break;
 			case 1:
-				allData = nepalStats.all[QUERYS.indexOf(query_type)].map(function(item, index) {
+				allData = nepalStats_month.all[QUERYS.indexOf(query_type)].map(function(item, index) {
 				if((item.year.indexOf(toYear) !== -1) || (item.year.indexOf(fromYear) !== -1)) {
 						if(index % 2 === 0)
 							return item;
