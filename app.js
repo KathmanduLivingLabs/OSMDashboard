@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0ab6c537bf99186d7b58"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a27c1a4cba4b68fe4d30"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -200846,7 +200846,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  color: #212121;\n  font: 16px/1.5 \"Source Sans Pro\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; }\n\n.container {\n  min-height: 100%;\n  margin: 0px 30px; }\n\n.content {\n  position: relative;\n  margin-top: 20px; }\n\n.header {\n  margin-top: -15px;\n  margin-bottom: -20px; }\n\n.all-border {\n  border: 2px solid black;\n  padding: 20px 4px 40px 4px; }\n\n.stats {\n  border: 1px solid rgba(0, 0, 0, 0.3); }\n\n.overlay {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(214, 54, 66, 0.4);\n  z-index: 4000; }\n\n.hide {\n  display: none; }\n", ""]);
+	exports.push([module.id, "body {\n  color: #212121;\n  font: 16px/1.5 \"Source Sans Pro\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; }\n\n.container {\n  min-height: 100%;\n  margin: 0px 30px; }\n\n.content {\n  position: relative;\n  margin-top: 20px; }\n\n.header {\n  margin-top: -15px;\n  margin-bottom: -20px; }\n\n.all-border {\n  border: 2px solid black;\n  padding: 20px 4px 40px 4px;\n  height: 65%; }\n\n.stats {\n  border: 1px solid rgba(0, 0, 0, 0.3); }\n\n.overlay {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(214, 54, 66, 0.4);\n  z-index: 4000; }\n\n.hide {\n  display: none; }\n", ""]);
 
 	// exports
 
