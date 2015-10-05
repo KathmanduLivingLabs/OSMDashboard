@@ -1,15 +1,16 @@
 var React = require('react');
 var Header = require('../Header');
-var Filter = require('../Filter');
 var Search = require('../Search');
 var Map = require('../Map');
 var ChartMaker = require('../ChartMaker');
-var MapStats = require('../MapStats');
-var RecentMapper = require('../RecentMapper');
 var Footer = require('../Footer');
 
+var districts = require('../../data/district.geojson');
 require('./style.scss');
-require('./spinner.scss');
+
+const QUERYTYPES = ['roads', 'waterways', 'edu_institute', 'buildings', 'medical',
+						'financial_institute', 'gov_offices', 'historic_sites', 'natural_heritage',
+						'tourist_interest', 'settlement', 'e_i_y', 'users'];
 
 export default class App extends React.Component {
 	constructor() {
@@ -19,22 +20,14 @@ export default class App extends React.Component {
 			bbox: '',
 			fromYear: '2010',
 			toYear: '2015',
-			selectedLayer: null,
-			loadData: () => {},
-			chartMakerThis: null	
+			selectedLayer: districts.features[0],
+			OSMData: [],
 		};
 	}
 
-	setChartMakerThis(that) {
-		this.setState({
-			chartMakerThis: this
-		});
-	}
 
-	setLoadData(loadData) {
-		this.setState({
-			loadData: loadData
-		});
+	componentDidMount() {
+		this.loadData();
 	}
 
 	setSearchText(searchText) {
@@ -61,20 +54,87 @@ export default class App extends React.Component {
 		});
 	}
 
-	setSelectedLayerBboxFromAndTo(selectedLayer, bbox) {
+	setOSMData(OSMData) {
 		this.setState({
-			selectedLayer: selectedLayer,
-			bbox: bbox,
-			fromYear: from,
-			toYear: to
+			OSMData: OSMData
 		});
 	}
 
+	setSelectedLayerAndBbox(selectedLayer, bbox) {
+		this.setState({
+			selectedLayer: selectedLayer,
+			bbox: bbox
+		});
+	}
+
+	loadData() {
+		var _this = this;
+		this.queryArgs = [this.state.fromYear, this.state.toYear, this.state.bbox];
+
+		initalizeDeferred();
+		for(var i = 0; i < 13; i++)
+			fetchData(QUERYTYPES[i], this.queryArgs[0], this.queryArgs[1], this.queryArgs[2]);
+
+		$.when(
+			loadingDataDeffered[0],
+			loadingDataDeffered[1],
+			loadingDataDeffered[2],
+			loadingDataDeffered[3],
+			loadingDataDeffered[4],
+			loadingDataDeffered[5],
+			loadingDataDeffered[6],
+			loadingDataDeffered[7],
+			loadingDataDeffered[8],
+			loadingDataDeffered[9],
+			loadingDataDeffered[10],
+			loadingDataDeffered[11],
+			loadingDataDeffered[12]
+		).done(function(...OSMData) {
+			var newOSMData = JSON.parse(JSON.stringify(OSMData));
+			var oldOSMData = OSMData;
+			OSMData.map(function(item, index) {
+				for(var i = 0; i < 35; i++) {
+					if(typeof item[0][i] === 'undefined') {
+						OSMData[index][0].splice(i, 1);
+					}
+				}
+			});
+			OSMData.map(function(item, index) {
+				for(var i = 0; i < 18; i++) {
+					if(typeof item[0][i] === 'undefined') {
+						OSMData[index][0].splice(i, 1);
+					}
+				}
+			});
+			OSMData.map(function(item, index) {
+				for(var i = 0; i < 18; i++) {
+					if(typeof item[0][i] === 'undefined') {
+						OSMData[index][0].splice(i, 1);
+					}
+				}
+			});
+			OSMData.map(function(item, index) {
+				for(var i = 0; i < 18; i++) {
+					if(typeof item[0][i] === 'undefined') {
+						OSMData[index][0].splice(i, 1);
+					}
+				}
+			OSMData.map(function(item, index) {
+				for(var i = 0; i < 18; i++) {
+					if(typeof item[0][i] === 'undefined') {
+						OSMData[index][0].splice(i, 1);
+					}
+				}
+			});
+			});
+			console.log(OSMData);
+			_this.setOSMData(OSMData);
+			//chartMakerThis.forceUpdate();
+		});
+	}
+
+
 	render() {
-					/*<Filter 
-						setFromYear={this.setFromYear.bind(this)}
-						setToYear={this.setToYear.bind(this)} />
-					 */
 		return( 
 				<div className="container">
 					<div id="overlay"></div>
@@ -83,16 +143,17 @@ export default class App extends React.Component {
 					<Search 
 						setSearchText={this.setSearchText.bind(this)}
 						setBbox={this.setBbox.bind(this)} 
-						myrefs={this.refs.chartMaker}
-						chartMakerThis={this.state.chartMakerThis}
-						setSelectedLayerBboxFromAndTo={this.setSelectedLayerBboxFromAndTo.bind(this)} />
+						loadData={this.loadData.bind(this)}
+						setFromYear={this.setFromYear.bind(this)}
+						setToYear={this.setToYear.bind(this)}
+						setSelectedLayerAndBbox={this.setSelectedLayerAndBbox.bind(this)} />
 					<div className="all-border">
 						<Map />
 						<ChartMaker ref="chartMaker"
-							setLoadData = {this.setLoadData.bind(this)}
-							setChartMakerThis={this.setChartMakerThis.bind(this)}
+							OSMData={this.state.OSMData}
 							fromYear={this.state.fromYear}
 							toYear={this.state.toYear}
+							loadData={this.loadData.bind(this)}
 							bbox={this.state.bbox} />
 					</div>
 					<div className="stats">

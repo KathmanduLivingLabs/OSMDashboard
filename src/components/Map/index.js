@@ -1,7 +1,6 @@
 import L from 'leaflet';
 var React = require('react');
 var nepal_border = require('../../data/nepal_border.json');
-//var vdc_json = require('../../data/vdc.geojson');
 var district = require('../../data/district.geojson');
 require('./style.scss');
 
@@ -61,7 +60,6 @@ export default class Map extends React.Component {
 
 		this.lmap.on('draw:created', function(e) {
 			editableLayer.addLayer(e.layer);
-			console.log(e.layer.getBounds());
 		}); */
 	}
 	render() {

@@ -5,8 +5,6 @@ var L = require('leaflet');
 
 require('./style.scss');
 
-var mySelectedFeature = null;
-var myBbox = null;
 export default class Search extends React.Component {
 	constructor() {
 		super();
@@ -19,19 +17,16 @@ export default class Search extends React.Component {
 	}
 
 	componentDidMount() {
+		/*
 		$("#search_input").keyup(function (e) {
 			if (e.keyCode == 13) {
 				if(document.getElementById('search_input').value.toLowerCase() === 'nepal') {
-					myBbox = '';
-					mySelectedFeature = {};
+					this.bbox = '';
+					this.selectedFeature = {};
 				}
 			}
 		});
-	}
-
-	setSearchText(e) {
-		//this.props.setSearchText(e.target.value);
-		//this.setState({searchText: searchText});
+	 */
 	}
 
 	setSearchResultList(searchResultList) {
@@ -64,36 +59,50 @@ export default class Search extends React.Component {
 	}
 
 	selectItem(feature, e) {
-		mySelectedFeature = L.geoJson(feature);
-		myBbox = '' + mySelectedFeature.getBounds()._northEast.lng + ',' 
-							 + mySelectedFeature.getBounds()._northEast.lat + ','
-							 + mySelectedFeature.getBounds()._southWest.lng + ',' 
-							 + mySelectedFeature.getBounds()._southWest.lat;
+		if(feature.properties.NAME === 'Nepal') {
+			this.selectedFeature = feature;
+			this.bbox = '';
+		}
+		//TEMPORARLY TURNING THIS OFF TO SHOW TO NAMA SIR, PLEASE TURN IT BACK ON
+		/*
+		else {
+			this.selectedFeature = L.geoJson(feature);
+			this.bbox = '' + this.selectedFeature.getBounds()._southWest.lng + ',' 
+								 + this.selectedFeature.getBounds()._southWest.lat + ','
+								 + this.selectedFeature.getBounds()._northEast.lng + ',' 
+								 + this.selectedFeature.getBounds()._northEast.lat;
+		}
+		this.props.setSelectedLayerAndBbox(this.selectedFeature, this.bbox);
+	 */
 		document.getElementById('search_input').value = feature.properties.NAME;
 		document.getElementById('search_input').focus();
 		document.getElementById('search_input').select();
-		//this.props.setSelectedLayerAndBbox(layer, bbox);
 
 	}
 
 	submitAll() {
+		/*
 		var from = document.getElementsByClassName('input_filter')[0];
 		from = from.options[from.selectedIndex].value;
 		var to = document.getElementsByClassName('input_filter')[1];
 		to = to.options[to.selectedIndex].value;
-		if(!this.state.selectedFeature) {
-			
-		} else {
-			if(!this.state.bbox)
-				this.state.bbox = '';
-			this.props.setSelectedLayerBboxFromAndTo(mySelectedFeature, myBbox, from, to);
-		}
-		console.log('chartMaketThsi');
-		console.log(this.props.chartMakerThis);
-		//this.props.myrefs.loadData.call(this.props.chartMakerThis);
-		this.props.myrefs.loadData();
-		//this.props.loadData('abc');
+		var place = document.getElementById('search_input');
+	 */
 
+		this.props.loadData();	
+
+	}
+
+	setFrom(e) {
+		console.log('setFrom');
+		console.log(e.target.value);
+		this.props.setFromYear(e.target.value);
+	}
+
+	setTo(e) {
+		console.log('setTo');
+		console.log(e.target.value);
+		this.props.setToYear(e.target.value);
 	}
 
 	render() {
@@ -110,7 +119,7 @@ export default class Search extends React.Component {
 					</div>
 
 				<div className="time-filter">
-					<select className="input_filter">
+					<select className="input_filter" onChange={this.setFrom.bind(this)}>
 						<option value="2010">2010</option>
 						<option value="2011">2011</option>
 						<option value="2012">2012</option>
@@ -120,7 +129,7 @@ export default class Search extends React.Component {
 					</select>
 				</div>
 				<div className="time-filter">
-					<select className="input_filter">
+					<select className="input_filter" onChange={this.setTo.bind(this)}>
 						<option value="2015">2015</option>
 						<option value="2014">2014</option>
 						<option value="2013">2013</option>
