@@ -10,7 +10,7 @@ require('./style.scss');
 
 const QUERYTYPES = ['roads', 'waterways', 'edu_institute', 'buildings', 'medical',
 						'financial_institute', 'gov_offices', 'historic_sites', 'natural_heritage',
-						'tourist_interest', 'settlement', 'e_i_y', 'users'];
+						'tourist_interest', 'settlements', 'e_i_y', 'users'];
 
 export default class App extends React.Component {
 	constructor() {
@@ -22,6 +22,7 @@ export default class App extends React.Component {
 			toYear: '2015',
 			selectedLayer: districts.features[0],
 			OSMData: [],
+			vdcData: []
 		};
 	}
 
@@ -90,6 +91,7 @@ export default class App extends React.Component {
 			loadingDataDeffered[11],
 			loadingDataDeffered[12]
 		).done(function(...OSMData) {
+			console.log('done');
 			var newOSMData = JSON.parse(JSON.stringify(OSMData));
 			var oldOSMData = OSMData;
 			OSMData.map(function(item, index) {

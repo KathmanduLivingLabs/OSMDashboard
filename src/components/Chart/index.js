@@ -32,12 +32,42 @@ export default class Charts extends React.Component {
 
 	render() {
 		var _this = this;
+		var diff = this.props.toYear - this.props.fromYear;
+		var yearLabels = [];
+		if(diff > 1) {
+			 ((fromYear, toYear) => {
+				for(var i = 0; i <= diff; i++)
+					yearLabels.push(Number(fromYear) + i);
+			})(this.props.fromYear, this.props.toYear);
+		} else if(diff === 1) {
+			((fromYear, toYear) => {
+				for(var i = 1; i <= 12; i += 4) {
+					year.push(fromYear + '-' + i);
+				}
+				for(var i = 1; i <= 12; i += 4) {
+					year.push(toYear + '-' + i);
+				}
+			})(this.props.fromYear, this.props.toYear)
+			
+		} else if(diff === 0) {
+			((fromYear, toYear) => {
+				for(var i = 1; i <= 12; i += 2) {
+					yearLabels.push(fromYear + '-' + i);
+				}
+			})(this.props.fromYear, this.props.toYear);
+		}
+
+		/*
 		var yearLabels = this.props.feature[0].map(function(item) {
-			if((_this.props.toYear - _this.props.fromyear) > 2)
-				return item.year.split('-')[0];
+			if((_this.props.toYear - _this.props.fromyear) > 1) {
+				return years;	
+			} 
 			else
 				return item.year;
 		});
+	 */
+		console.log('borois boris brois');
+		console.log(yearLabels);
 
 		var yearSeries = this.props.feature[0].map(function(item) {
 			return Number(item.count);
@@ -62,7 +92,10 @@ export default class Charts extends React.Component {
 						return value;
 				}
 			},
-			lineSmooth: false
+			lineSmooth: false,
+			plugins: [
+				Chartist.plugins.tooltip()
+			]
 		};
 
 		return(

@@ -53,8 +53,15 @@
 
 .y-axis-label {
 	position: absolute;
+	display: inline-block;
 	top: 150px;
 	left: 0;
-	display: inline-block;
-	transform: rotate(-90deg);
+	width: 20px;
+}
+
+.show {
+	position: absolute;
+	opacity: 1;
+	top: 0;
+	left: 0;
 }

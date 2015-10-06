@@ -34,19 +34,19 @@ export default class ChartMaker extends React.Component {
 	componentWillUpdate() {
 		var allCharts = document.getElementsByClassName('all-charts');
 		for(var i = 1; i < allCharts.length; i++) {
-			allCharts[i].className = 'all-charts';
+			allCharts[i].className = 'all-charts show';
 		}
 	}
 	componentDidUpdate() {
 		if(this.state.childCount >= 12) {
 				var allCharts = document.getElementsByClassName('all-charts');
-				allCharts[0].className = 'all-charts';
-				setTimeout(function() {
+				allCharts[0].className = 'all-charts show';
+				//setTimeout(function() {
 					for(var i = 0; i < allCharts.length; i++)  {
 						allCharts[i].className = 'all-charts hide';
 					}
-					allCharts[0].className = 'all-charts';
-				}, 1000);
+					allCharts[0].className = 'all-charts show';
+				//}, 1000);
 		}
 	}
 
@@ -64,10 +64,10 @@ export default class ChartMaker extends React.Component {
 		var charts = document.getElementsByClassName('all-charts');
 		for(var i = 0; i < 12; i++) {
 			if(charts[i].className.indexOf('hide') === -1) {
-				charts[i].className += ' hide';
+				charts[i].className = 'all-charts hide';
 				if(i - 1 === -1)
 					i = 12;
-				charts[(i - 1) % 12].className = 'all-charts';
+				charts[(i - 1) % 12].className = 'all-charts show';
 				break;
 			}
 		}
@@ -78,8 +78,8 @@ export default class ChartMaker extends React.Component {
 		var charts = document.getElementsByClassName('all-charts');
 		for(var i = 0; i < 12; i++) {
 			if(charts[i].className.indexOf('hide') === -1) {
-				charts[i].className += ' hide';
-				charts[(i + 1) % 12].className = 'all-charts';
+				charts[i].className = 'all-charts hide';
+				charts[(i + 1) % 12].className = 'all-charts show';
 				break;
 			}
 		}
@@ -106,10 +106,10 @@ export default class ChartMaker extends React.Component {
 				{
 					this.props.OSMData.map(function(item, index) {
 						return(
-							<div className='all-charts'>
+							<div className='all-charts show'>
 							<span className="chart-title">{CHART_TITLE[index].main_title}</span>
-							<span className="x-axis-label">Years</span>
-							<span className="y-axis-label">{CHART_TITLE[index].y_axis}</span>
+							<div className="x-axis-label">Years</div>
+							<div className="y-axis-label">{CHART_TITLE[index].y_axis}</div>
 							<Chart key={index} feature={item} index={index} 
 										childCount={_this.state.childCount}
 										toYear={_this.props.toYear}

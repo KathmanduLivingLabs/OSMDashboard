@@ -12,7 +12,8 @@ export default class Search extends React.Component {
 		this.bbox = null;
 		this.state = {
 			searchText: '',
-			searchResultList: []
+			searchResultList: [],
+			vdcData: []
 		};
 	}
 
@@ -36,7 +37,24 @@ export default class Search extends React.Component {
 	}
 
 	filterList(e) {
-		var updatedList = districts.features;
+		var vdcs = {};
+		var updatedList = {};
+		var _this = this;
+		if(e.target.value.length === 3) {
+			var vdc_url = 'http://45.55.246.231:8000/api/vdc?name='
+			vdc_url += e.target.value;
+			console.log(vdc_url);
+			$.ajax ({
+				url: vdc_url,
+				success: function(result) {
+					console.log(result);
+					_this.setState({
+						vdcData: result
+					});
+				}
+			});
+		}
+		updatedList = districts.features;
 		updatedList =	updatedList.filter(function(item) {
 			return item.properties.NAME.toLowerCase().indexOf(e.target.value.toLowerCase()) === 0;
 		});
@@ -64,7 +82,7 @@ export default class Search extends React.Component {
 			this.bbox = '';
 		}
 		//TEMPORARLY TURNING THIS OFF TO SHOW TO NAMA SIR, PLEASE TURN IT BACK ON
-		/*
+	/*	
 		else {
 			this.selectedFeature = L.geoJson(feature);
 			this.bbox = '' + this.selectedFeature.getBounds()._southWest.lng + ',' 
@@ -74,6 +92,7 @@ export default class Search extends React.Component {
 		}
 		this.props.setSelectedLayerAndBbox(this.selectedFeature, this.bbox);
 	 */
+	 
 		document.getElementById('search_input').value = feature.properties.NAME;
 		document.getElementById('search_input').focus();
 		document.getElementById('search_input').select();
@@ -107,6 +126,7 @@ export default class Search extends React.Component {
 
 	render() {
 		var _this = this;
+		Object.assign(this.state.searchResultList, this.state.vdcData);
 		return(
 			<div className="search-container">
 				<div className="search">
