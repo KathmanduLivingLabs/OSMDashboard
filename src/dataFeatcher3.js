@@ -73,7 +73,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 		$.ajax({
 			url: apiURL,
 			success: function(result) {
-				console.log(result);
+				loadingDataDeffered[queryIndex].resolve(result, QUERYS.indexOf(query_type));
 			}
 		})
 	}
