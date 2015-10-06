@@ -1,6 +1,6 @@
 const QUERYS = ['roads', 'waterways', 'edu_institute', 'buildings', 'medical',
 						'financial_institute', 'gov_offices', 'historic_sites', 'natural_heritage',
-						'tourist_interest', 'settlement', 'e_i_y', 'users'];
+						'tourist_interest', 'settlements', 'e_i_y', 'users'];
 
 var loadingDataDeffered = [];
 
