@@ -65,7 +65,7 @@ function fetchData(query_type, fromYear, toYear, bbox) {
 			loadingDataDeffered[QUERYS.indexOf(query_type)].resolve(allData, query_type);
 		}
 	} else {
-		var apiURL = 'http://45.55.246.231:8000/api/' + query_type + '?from=';
+		var apiURL = 'http://128.199.114.42:8000/api/' + query_type + '?from=';
 		apiURL += fromYear + '&to=';
 		apiURL += toYear + '&bbox=' + bbox;
 		console.log(apiURL);
