@@ -3,12 +3,6 @@ import ChartistGraph from 'react-chartist';
 
 require('./style.scss');
 
-/*
-const CHART_TITLE = ['Roads', 'Waterways', 'Educational Institutes', 'Buildings', 'Health Services',
-						'Financial Institutions', 'Government Offices', 'Historic Sites', 'Natural Heritages',
-						'Tourist Interest', 'Settlements', 'Map Contirbutions', 'Users'];
-*/
-
 const CHART_TITLE = [
 	{main_title: 'Roads', y_axis: 'Kilometers'},
 	{main_title: 'Waterways', y_axis: 'Kilometers'},
@@ -42,10 +36,10 @@ export default class Charts extends React.Component {
 		} else if(diff === 1) {
 			((fromYear, toYear) => {
 				for(var i = 1; i <= 12; i += 4) {
-					year.push(fromYear + '-' + i);
+					yearLabels.push(fromYear + '-' + i);
 				}
 				for(var i = 1; i <= 12; i += 4) {
-					year.push(toYear + '-' + i);
+					yearLabels.push(toYear + '-' + i);
 				}
 			})(this.props.fromYear, this.props.toYear)
 			
@@ -66,11 +60,13 @@ export default class Charts extends React.Component {
 				return item.year;
 		});
 	 */
-		console.log('borois boris brois');
-		console.log(yearLabels);
 
 		var yearSeries = this.props.feature[0].map(function(item) {
-			return Number(item.count);
+			var data = Number(item.count);
+			if(_this.props.index === 0 || _this.props.index === 1)
+				//data = data / 1000;
+			data = Math.round(data * 100) / 100;
+			return data;
 		});
 
 		chartData = {

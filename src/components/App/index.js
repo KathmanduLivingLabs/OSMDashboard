@@ -71,7 +71,7 @@ export default class App extends React.Component {
 	loadData() {
 		var _this = this;
 		this.queryArgs = [this.state.fromYear, this.state.toYear, this.state.bbox];
-
+		$('.overlay').show();
 		initalizeDeferred();
 		for(var i = 0; i < 13; i++)
 			fetchData(QUERYTYPES[i], this.queryArgs[0], this.queryArgs[1], this.queryArgs[2]);
@@ -91,7 +91,6 @@ export default class App extends React.Component {
 			loadingDataDeffered[11],
 			loadingDataDeffered[12]
 		).done(function(...OSMData) {
-			console.log('done');
 			var newOSMData = JSON.parse(JSON.stringify(OSMData));
 			var oldOSMData = OSMData;
 			OSMData.map(function(item, index) {
@@ -129,17 +128,20 @@ export default class App extends React.Component {
 				}
 			});
 			});
-			console.log(OSMData);
 			_this.setOSMData(OSMData);
 			//chartMakerThis.forceUpdate();
+			$('.overlay').hide();
 		});
 	}
 
 
 	render() {
 		return( 
+					 <div>
+					<div className="overlay">
+						<div className="timer-loader position-loader"> Loading… </div>
+					</div>
 				<div className="container">
-					<div id="overlay"></div>
 				<Header />
 				<div className="content">
 					<Search 
@@ -150,7 +152,7 @@ export default class App extends React.Component {
 						setToYear={this.setToYear.bind(this)}
 						setSelectedLayerAndBbox={this.setSelectedLayerAndBbox.bind(this)} />
 					<div className="all-border">
-						<Map />
+						<Map selectedLayer={this.state.selectedLayer} />
 						<ChartMaker ref="chartMaker"
 							OSMData={this.state.OSMData}
 							fromYear={this.state.fromYear}
@@ -164,6 +166,7 @@ export default class App extends React.Component {
 					</div>	
 				</div>
 				<Footer />	
+			</div>
 			</div>
 		);
 

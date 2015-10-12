@@ -9,8 +9,8 @@ export default class Map extends React.Component {
 		super();
 		this.lmap = null;
 		this.state = {
-			searcText: ''
-		}
+			searcText: '',
+		};
 	}
 	componentDidMount() {
 		this.lmap = L.map('map').setView([28.478348, 84.439285], 6);
@@ -40,32 +40,24 @@ export default class Map extends React.Component {
 			weight: 0,
 			opacity: 0
 		}).addTo(this.lmap);
-
-		/*
-		var editableLayer = new L.FeatureGroup();
-		this.lmap.addLayer(editableLayer);
-
-		var drawControl = new L.Control.Draw({
-			draw: {
-				polyline: false,
-				marker: false,
-				rectangle: false,
-				circle: false
-			},
-			edit: {
-				featureGroup: editableLayer
-			}
-		});
-		this.lmap.addControl(drawControl);
-
-		this.lmap.on('draw:created', function(e) {
-			editableLayer.addLayer(e.layer);
-		}); */
 	}
+
+	componentDidUpdate(prevProps) {
+		if(typeof(this.props.selectedLayer.feature) === 'undefined') {
+			if(prevProps.selectedLayer !== this.props.selectedLayer) {
+				this.props.selectedLayer.addTo(this.lmap);
+				this.lmap.fitBounds(this.props.selectedLayer.getBounds());
+			}
+		}
+	}
+
 	render() {
+		//console.log(this.props.selectedLayer._layers["_leaflet_id"].feature.properties.NAME);
+		//var leafletID = this.props.selectedLayer._leaflet_id;
+		//if(typeof this.props.selectedLayer.properties === 'undefined')
+		//console.log(this.props.selectedLayer._layers[leafletID - 1].feature.properties.NAME, leafletID);
 		return(
-			<div id="map" className="map">
-			</div>
+			<div id="map" className="map"></div>
 		)
 	}
 }

@@ -43,11 +43,9 @@ export default class Search extends React.Component {
 		if(e.target.value.length === 3) {
 			var vdc_url = 'http://45.55.246.231:8000/api/vdc?name='
 			vdc_url += e.target.value;
-			console.log(vdc_url);
 			$.ajax ({
 				url: vdc_url,
 				success: function(result) {
-					console.log(result);
 					_this.setState({
 						vdcData: result
 					});
@@ -82,7 +80,7 @@ export default class Search extends React.Component {
 			this.bbox = '';
 		}
 		//TEMPORARLY TURNING THIS OFF TO SHOW TO NAMA SIR, PLEASE TURN IT BACK ON
-	/*	
+		
 		else {
 			this.selectedFeature = L.geoJson(feature);
 			this.bbox = '' + this.selectedFeature.getBounds()._southWest.lng + ',' 
@@ -91,7 +89,7 @@ export default class Search extends React.Component {
 								 + this.selectedFeature.getBounds()._northEast.lat;
 		}
 		this.props.setSelectedLayerAndBbox(this.selectedFeature, this.bbox);
-	 */
+	 
 	 
 		document.getElementById('search_input').value = feature.properties.NAME;
 		document.getElementById('search_input').focus();
@@ -100,27 +98,25 @@ export default class Search extends React.Component {
 	}
 
 	submitAll() {
-		/*
 		var from = document.getElementsByClassName('input_filter')[0];
 		from = from.options[from.selectedIndex].value;
 		var to = document.getElementsByClassName('input_filter')[1];
 		to = to.options[to.selectedIndex].value;
 		var place = document.getElementById('search_input');
-	 */
 
-		this.props.loadData();	
-
+		this.props.setFromYear(from);
+		this.props.setToYear(to);
+		
+		setTimeout(() => {
+			this.props.loadData();	
+		}, 1000);
 	}
 
 	setFrom(e) {
-		console.log('setFrom');
-		console.log(e.target.value);
 		this.props.setFromYear(e.target.value);
 	}
 
 	setTo(e) {
-		console.log('setTo');
-		console.log(e.target.value);
 		this.props.setToYear(e.target.value);
 	}
 
@@ -139,7 +135,7 @@ export default class Search extends React.Component {
 					</div>
 
 				<div className="time-filter">
-					<select className="input_filter" onChange={this.setFrom.bind(this)}>
+					<select className="input_filter">
 						<option value="2010">2010</option>
 						<option value="2011">2011</option>
 						<option value="2012">2012</option>
@@ -149,7 +145,7 @@ export default class Search extends React.Component {
 					</select>
 				</div>
 				<div className="time-filter">
-					<select className="input_filter" onChange={this.setTo.bind(this)}>
+					<select className="input_filter">
 						<option value="2015">2015</option>
 						<option value="2014">2014</option>
 						<option value="2013">2013</option>

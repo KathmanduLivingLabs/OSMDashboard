@@ -14,6 +14,7 @@
 	background-size: 50px 50px;
 	width: 50px;
 	height: 50px;
+	z-index: 500;
 }
 
 .nav-right {
@@ -24,7 +25,7 @@
 	background-size: 50px 50px;
 	width: 50px;
 	height: 50px;
-	z-index: 200;
+	z-index: 500;
 }
 
 .all-charts {
@@ -54,9 +55,9 @@
 .y-axis-label {
 	position: absolute;
 	display: inline-block;
+	transform: rotate(90deg);
 	top: 150px;
 	left: 0;
-	width: 20px;
 }
 
 .show {
@@ -64,4 +65,5 @@
 	opacity: 1;
 	top: 0;
 	left: 0;
+	z-index: 400;
 }
