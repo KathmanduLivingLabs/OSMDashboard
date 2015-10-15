@@ -4,19 +4,19 @@ import ChartistGraph from 'react-chartist';
 require('./style.scss');
 
 const CHART_TITLE = [
-	{main_title: 'Roads', y_axis: 'Kilometers'},
-	{main_title: 'Waterways', y_axis: 'Kilometers'},
-	{main_title: 'Educational Institute', y_axis: 'No. of Educational Institute Edited'},
-	{main_title: 'Buildings', y_axis: 'No. of Buildings Edited'},
-	{main_title: 'Health Services', y_axis: 'No. of Health Services Edited'},
-	{main_title: 'Financial Institutions', y_axis: 'No. of Financial Institutions Edited'},
-	{main_title: 'Government Offices', y_axis: 'No of. Government Offices Edited'},
-	{main_title: 'Historic Sites', y_axis: 'No. of Historic Sites Edited'},
-	{main_title: 'Natural Heritage', y_axis: 'No. of Natural Heritage Edited'},
-	{main_title: 'Tourist Interest', y_axis: 'No. Tourist Interest Edited'},
-	{main_title: 'Settlements', y_axis: 'No. of Settlements Edited'},
-	{main_title: 'Map Contirbutions', y_axis: 'No. of Map Contributions'},
-	{main_title: 'Users', y_axis: 'No. of Users'},
+	{main_title: 'Kilometers of Roads Edited', y_axis: 'Kilometers'},
+	{main_title: 'Kilometers of Waterways Edited', y_axis: 'Kilometers'},
+	{main_title: 'No. of Educational Institute Edited', y_axis: 'No. of Educational Institute Edited'},
+	{main_title: 'No. of Buildings Edited', y_axis: 'No. of Buildings Edited'},
+	{main_title: 'No. of Health Services Edited', y_axis: 'No. of Health Services Edited'},
+	{main_title: 'No. of Financial Institutions Edited', y_axis: 'No. of Financial Institutions Edited'},
+	{main_title: 'No. of Government Offices Edited', y_axis: 'No of. Government Offices Edited'},
+	{main_title: 'No. of Historic Sites Edited', y_axis: 'No. of Historic Sites Edited'},
+	{main_title: 'No. of Natural Heritage Edited', y_axis: 'No. of Natural Heritage Edited'},
+	{main_title: 'No. of Tourist Interest Edited', y_axis: 'No. Tourist Interest Edited'},
+	{main_title: 'No. of Settlements Edited', y_axis: 'No. of Settlements Edited'},
+	{main_title: 'No. of Map Contirbutions', y_axis: 'No. of Map Contributions'},
+	{main_title: 'No. of Users', y_axis: 'No. of Users'},
 ]
 var chartData = [];
 export default class Charts extends React.Component {
